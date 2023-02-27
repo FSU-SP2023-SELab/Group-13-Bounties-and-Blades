@@ -2143,10 +2143,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      military3_83: -1987086215
-      military3_62: 1040258365
-      military3_34: -1856344410
       military3_88: -1475497642
+      military3_62: 1040258365
+      military3_83: -1987086215
+      military3_34: -1856344410
       military3_86: 870494075
       military3_47: -1845739982
       military3_61: 993458416

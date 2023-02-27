@@ -2152,7 +2152,7 @@ TextureImporter:
       npc2_29: 905485297
       npc2_86: -1573804734
       npc2_3: -1255245453
-      npc2_85: 741676680
+      npc2_81: -888916255
       npc2_94: -1538459995
       npc2_50: -996392414
       npc2_89: -849443379
@@ -2237,8 +2237,8 @@ TextureImporter:
       npc2_61: -250042129
       npc2_42: 435564793
       npc2_70: 851354894
-      npc2_81: -888916255
       npc2_46: -1996730985
+      npc2_85: 741676680
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
