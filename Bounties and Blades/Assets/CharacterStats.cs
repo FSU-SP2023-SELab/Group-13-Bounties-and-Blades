@@ -1,110 +1,122 @@
-/*
-Sources Sited:
-[1] Kryzarel (youtube), "Character Stats in Unity #1 - Base Implementation". Available: https://youtu.be/SH25f3cXBVc
-*/
-
-using System;
-using System.Collections.Generic;
-using UnityEngine.UIElements;
-using System.Collections.ObjectModel;
-
-public class CharacterStats
+namespace BountiesAndBlades.CharacterStats
 {
-    public float BaseValue;
+    /*
+    Sources Sited:
+    [1] Kryzarel (youtube), "Character Stats in Unity #1 - Base Implementation". Available: https://youtu.be/SH25f3cXBVc
+    */
 
-    public float TotalValue { get {
-            if (needsUpdate || BaseValue != lastBaseValue)
+    using System;
+    using System.Collections.Generic;
+    using UnityEngine.UIElements;
+    using System.Collections.ObjectModel;
+
+    [Serializable]
+    public class CharacterStats
+    {
+        public float BaseValue;
+
+        public virtual float TotalValue
+        {
+            get
             {
-                lastBaseValue = BaseValue;
-                _value = CalculateFinalValue();
-                needsUpdate = false;
+                if (needsUpdate || BaseValue != lastBaseValue)
+                {
+                    lastBaseValue = BaseValue;
+                    _value = CalculateFinalValue();
+                    needsUpdate = false;
+                }
+                return _value;
             }
-            return _value;
-            } }
+        }
 
-    private bool needsUpdate = true;
-    private float _value;
-    private float lastBaseValue = float.MinValue;
+        protected bool needsUpdate = true;
+        protected float _value;
+        protected float lastBaseValue = float.MinValue;
 
-    private readonly List<StatModifier> statModifiers;
-    public readonly ReadOnlyCollection<StatModifier> StatModifiers; // Allows players to see their stat modifiers
+        private readonly List<StatModifier> statModifiers;
+        public readonly ReadOnlyCollection<StatModifier> StatModifiers; // Allows players to see their stat modifiers
 
-    public CharacterStats(float baseValue)
-    {
-        BaseValue = baseValue;
-        statModifiers = new List<StatModifier>();
-        StatModifiers = statModifiers.AsReadOnly();
-    }
+        public CharacterStats()
+        {
+            statModifiers = new List<StatModifier>();
+            StatModifiers = statModifiers.AsReadOnly();
+        }
 
-    public void AddModifier(StatModifier modifier)
-    {
-        needsUpdate = true;
-        statModifiers.Add(modifier);
-        statModifiers.Sort();
-    }
+        public CharacterStats(float baseValue) : this()
+        {
+            BaseValue = baseValue;
+        }
 
-    private int CompareModifierOrder(StatModifier a, StatModifier b)
-    {
-        if (a.Order < b.Order) return -1;
-        else if (a.Order > b.Order) return 1;
-        return 0;
-    }
-
-    public bool RemoveModifier(StatModifier modifier)
-    {
-        if (statModifiers.Remove(modifier))
+        public virtual void AddModifier(StatModifier modifier)
         {
             needsUpdate = true;
-            return true;
+            statModifiers.Add(modifier);
+            statModifiers.Sort();
         }
-        return false;
-    }
 
-    public bool RemoveAllModifiersFromSource(object source)
-    {
-        bool didRemove = false;
-        for (int i = statModifiers.Count - 1; i >= 0; i++)
+        protected virtual int CompareModifierOrder(StatModifier a, StatModifier b)
         {
-            if (statModifiers[i].Source == source)
+            if (a.Order < b.Order) return -1;
+            else if (a.Order > b.Order) return 1;
+            return 0;
+        }
+
+        public virtual bool RemoveModifier(StatModifier modifier)
+        {
+            if (statModifiers.Remove(modifier))
             {
                 needsUpdate = true;
-                didRemove = true;
-                statModifiers.RemoveAt(i);
+                return true;
             }
+            return false;
         }
-        return didRemove;
-    }
 
-    private float CalculateFinalValue()
-    {
-        float finalValue = BaseValue;
-        float sumPercentAdd = 0;
-
-        for (int i = 0; i < statModifiers.Count; i++)
+        public virtual bool RemoveAllModifiersFromSource(object source)
         {
-            StatModifier modifier = statModifiers[i];
-
-            if (modifier.Type == StatModType.Flat)
+            bool didRemove = false;
+            for (int i = statModifiers.Count - 1; i >= 0; i++)
             {
-                finalValue += statModifiers[i].Value; // For flat modifiers simply add them to the base stats
-            }
-            else if (modifier.Type == StatModType.PercentAdd)
-            {
-                sumPercentAdd += modifier.Value;
-
-                if (i + 1 >= statModifiers.Count || statModifiers[i + 1].Type != StatModType.PercentAdd)
+                if (statModifiers[i].Source == source)
                 {
-                    finalValue *= 1 + sumPercentAdd;
-                    sumPercentAdd = 0;
+                    needsUpdate = true;
+                    didRemove = true;
+                    statModifiers.RemoveAt(i);
                 }
             }
-            else if (modifier.Type == StatModType.PercentMult)
-            {
-                finalValue *= 1 + modifier.Value;
-            }
+            return didRemove;
         }
 
-        return (float)Math.Round(finalValue, 4); 
-    }
+        protected virtual float CalculateFinalValue()
+        {
+            float finalValue = BaseValue;
+            float sumPercentAdd = 0;
 
+            for (int i = 0; i < statModifiers.Count; i++)
+            {
+                StatModifier modifier = statModifiers[i];
+
+                if (modifier.Type == StatModType.Flat)
+                {
+                    finalValue += statModifiers[i].Value; // For flat modifiers simply add them to the base stats
+                }
+                else if (modifier.Type == StatModType.PercentAdd)
+                {
+                    sumPercentAdd += modifier.Value;
+
+                    if (i + 1 >= statModifiers.Count || statModifiers[i + 1].Type != StatModType.PercentAdd)
+                    {
+                        finalValue *= 1 + sumPercentAdd;
+                        sumPercentAdd = 0;
+                    }
+                }
+                else if (modifier.Type == StatModType.PercentMult)
+                {
+                    finalValue *= 1 + modifier.Value;
+                }
+            }
+
+            return (float)Math.Round(finalValue, 4);
+        }
+
+    }
 }
