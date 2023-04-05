@@ -9,6 +9,9 @@ AnimatorController:
   m_Name: Bard
   serializedVersion: 5
   m_AnimatorParameters: []
+<<<<<<< HEAD
+  m_AnimatorLayers: []
+=======
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -186,3 +189,4 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 330281468181680016}
+>>>>>>> main
