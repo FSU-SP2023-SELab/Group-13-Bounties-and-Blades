@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3192438570541262035
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 718202342762749344, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_Name
+      value: Mountain Tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2764580399763705413, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.27816838
+      objectReference: {fileID: 0}
+    - target: {fileID: 2764580399763705413, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.36222368
+      objectReference: {fileID: 0}
+    - target: {fileID: 2764580399763705413, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153473137727422076, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+--- !u!1 &459495267535025329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3039267248985067618, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+  m_PrefabInstance: {fileID: 3192438570541262035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &725100219681893014 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2764580399763705413, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+  m_PrefabInstance: {fileID: 3192438570541262035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2718556580884003187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 718202342762749344, guid: 9002a416930b3534d87ca850ee33fbd7, type: 3}
+  m_PrefabInstance: {fileID: 3192438570541262035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-1352278493135370284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2718556580884003187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf679fcf759dea4b9099509014555ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TileName: Mountain
+  _renderer: {fileID: 725100219681893014}
+  _highlight: {fileID: 459495267535025329}
+  _isWalkable: 0
+  OccupiedUnit: {fileID: 0}
