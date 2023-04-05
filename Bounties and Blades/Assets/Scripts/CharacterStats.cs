@@ -51,7 +51,7 @@ namespace BountiesAndBlades.CharacterStats
         {
             needsUpdate = true;
             statModifiers.Add(modifier);
-            statModifiers.Sort();
+            statModifiers.Sort(CompareModifierOrder);
         }
 
         protected virtual int CompareModifierOrder(StatModifier a, StatModifier b)
