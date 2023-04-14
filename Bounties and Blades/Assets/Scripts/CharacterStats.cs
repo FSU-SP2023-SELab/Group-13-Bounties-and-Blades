@@ -29,6 +29,11 @@ namespace BountiesAndBlades.CharacterStats
             }
         }
 
+        public List<StatModifier> GetStatModifiers()
+        {
+            return statModifiers;
+        }
+
         protected bool needsUpdate = true;
         protected float _value;
         protected float lastBaseValue = float.MinValue;

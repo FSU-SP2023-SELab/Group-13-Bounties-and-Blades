@@ -31,5 +31,11 @@ namespace BountiesAndBlades.CharacterStats
         public StatModifier(float value, StatModType type, int order) : this(value, type, order, null) { }
 
         public StatModifier(float value, StatModType type, object source) : this(value, type, (int)type, source) { }
+
+       override
+            public string ToString()
+        { 
+            return Type.ToString() + ", " + Value.ToString();
+        }
     }
 }

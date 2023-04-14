@@ -12,11 +12,12 @@ namespace BountiesAndBlades.CharacterClass
         private string className;
         private string classDescription;
 
-        private int HP;
-        private int Armor;
-        private int[] StatsList = new int[6]; //0 Strength, 1 Speed, 2 Defense, 3 Intelligence, 4 Constitution, 5 Luck
+        private double HP;
+        private double Armor;
+        private double[] StatsList = new double[6]; //0 Strength, 1 Speed, 2 Defense, 3 Intelligence, 4 Constitution, 5 Luck
+        //use 6 for HP, 7 for Armor when modifying stats.
 
-        private CharacterStats modifiers = new CharacterStats();
+        private Dictionary<string, float> modifiers = new Dictionary<string, float>();
         public string getName()
         {
             return className;
@@ -25,34 +26,26 @@ namespace BountiesAndBlades.CharacterClass
         {
             return classDescription;
         }
-        public int getHP()
+        public double getHP()
         {
             return HP;
         }
-        public int getArmor()
+        public double getArmor()
         {
             return Armor;
         }
-        public int getStat(int i)
+        public double getStat(int i)
         {
             return StatsList[i];
         }
-        public int[] getAllStats()
+        public double[] getAllStats()
         {
             return StatsList;
         }
 
-        public string[,] getModifiers()
+        public Dictionary<string, float> getModifiers()
         {
-            string[,] r = new string[2, modifiers.StatModifiers.Count];
-
-            for (int i = 0; i < modifiers.StatModifiers.Count; i++)
-            {
-                r[1, i] = modifiers.StatModifiers[i].Value.ToString();
-                r[0, i] = modifiers.StatModifiers[i].Type.ToString();
-            }
-
-            return r;
+            return modifiers;
         }
 
         public void setName(string n)
@@ -79,9 +72,11 @@ namespace BountiesAndBlades.CharacterClass
             StatsList[i] = v;
         }
 
-        public void addModifier(StatModifier s)
+        public void addModifier(int i, StatModifier s)
         {
-            modifiers.AddModifier(s);
+
+            modifiers.Add(i.ToString(), s.Value);
+            StatsList[i] += ((s.Value / 100)*StatsList[i]);
         }
 
     }
