@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3212a4bcf1d03d54da32496043937843, type: 3}
+  m_Name: Hero Character Database
+  m_EditorClassIdentifier: 
+  character:
+  - characterName: Archer
+    characterObject: {fileID: 6640328428887571730, guid: 5420a937ef596b944af3bb1fac21a940, type: 3}
+  - characterName: Barbarian
+    characterObject: {fileID: 4663708362081260778, guid: 39782a3e708ac744ebc13ec0a06a3f29, type: 3}
+  - characterName: Bard
+    characterObject: {fileID: 3498413300413065814, guid: c0b9bdc7a340c59439064848d3155159, type: 3}
+  - characterName: Duke
+    characterObject: {fileID: 4703420165273180344, guid: cd6582b1b118a40478247e793e87b1e5, type: 3}
+  - characterName: Dwarf
+    characterObject: {fileID: 1547014479691845517, guid: 4d2b78386c320a34e85f510800d3385d, type: 3}
+  - characterName: Enchantress
+    characterObject: {fileID: 7624706290662871736, guid: aeee39ce1c6ca8c4b9a6bbfc41eca129, type: 3}
+  - characterName: Jester
+    characterObject: {fileID: 320598146547850021, guid: a63ea35993a39c54b8db91415ecfa126, type: 3}
+  - characterName: Lancer
+    characterObject: {fileID: 7178844080014676963, guid: e7fc10a126488324c89a0d8508415c96, type: 3}
+  - characterName: Lutist
+    characterObject: {fileID: 5436641600320727245, guid: ca393e3157106614ca78cc3ab7b5e140, type: 3}
+  - characterName: Mage
+    characterObject: {fileID: 8406230884835092392, guid: 98b7b5b6319f5c442bd78f6ea21e88cf, type: 3}
+  - characterName: Priestess
+    characterObject: {fileID: 1716038608953098129, guid: c0d52a14067c5d34e9ace8a9e700664a, type: 3}
+  - characterName: Ranger
+    characterObject: {fileID: 8929363060804413461, guid: 7fae5939f1781f04a8f90ad9adbcdc4d, type: 3}
+  - characterName: Rogue
+    characterObject: {fileID: 2446904780253175966, guid: 7a4461634815613409f6e6ed0dec7871, type: 3}
+  - characterName: Soldier
+    characterObject: {fileID: 8447346189340315484, guid: 6616c54037a3fee49b4eb6db2411c5fc, type: 3}
+  - characterName: Sourcerer
+    characterObject: {fileID: 891995265419138541, guid: 34505c43564a5814d8a81b874087bb36, type: 3}
+  - characterName: Swordsman
+    characterObject: {fileID: 495359657358798765, guid: 11d5b4dd6c1378341993c86d6a67eea3, type: 3}
+  - characterName: Thief
+    characterObject: {fileID: 3367890445171722808, guid: a595dfb75a8fb354c96e43ac936e081d, type: 3}
+  - characterName: Warrior
+    characterObject: {fileID: 6885058984195234874, guid: ed709eaae7a914f44861668d6afc09b0, type: 3}

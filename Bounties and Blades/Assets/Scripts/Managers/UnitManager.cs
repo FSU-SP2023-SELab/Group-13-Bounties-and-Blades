@@ -11,6 +11,8 @@ public class UnitManager : MonoBehaviour
     private List<ScriptableUnit> _units;
     public BaseHero SelectedHero;
 
+    private List<GameObject> team = CharacterManager.team;
+
     void Awake()
     {
         Instance = this;
@@ -21,15 +23,17 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnHeroes()
     {
-        var heroCount = 1;
+        var heroCount = 3;
 
         for (int i = 0; i < heroCount; i++)
         {
+            // var randomPrefab = team[i];
             var randomPrefab = GetRandomUnit<BaseHero>(Faction.Hero);
             var spawnedHero = Instantiate(randomPrefab);
             var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
 
             randomSpawnTile.SetUnit(spawnedHero);
+            
         }
 
         GameManager.Instance.ChangeState(GameState.SpawnEnemies);

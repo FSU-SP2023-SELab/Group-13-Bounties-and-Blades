@@ -22,18 +22,18 @@ public class TestGUI : MonoBehaviour
 
     void OnGUI()
     {
-        List<StatModifier> mods = archer.getModifiers();
-        GUILayout.Label(archer.getName());
-        foreach (StatModifier s in mods)
-        {
-            GUILayout.Label(s.ToString());
-        }
-        archer2.addModifier(new BountiesAndBlades.CharacterStats.StatModifier(100, new BountiesAndBlades.CharacterStats.StatModType(), 1, 0));
-        GUILayout.Label(archer2.getName());
-        mods = archer2.getModifiers();
-        foreach (StatModifier s in mods)
-        {
-            GUILayout.Label(s.ToString());
-        }
+        // List<StatModifier> mods = archer.getModifiers();
+        // GUILayout.Label(archer.getName());
+        // foreach (StatModifier s in mods)
+        // {
+        //     GUILayout.Label(s.ToString());
+        // }
+        // archer2.addModifier(new BountiesAndBlades.CharacterStats.StatModifier(100, new BountiesAndBlades.CharacterStats.StatModType(), 1, 0));
+        // GUILayout.Label(archer2.getName());
+        // mods = archer2.getModifiers();
+        // foreach (StatModifier s in mods)
+        // {
+        //     GUILayout.Label(s.ToString());
+        // }
     }
 }
