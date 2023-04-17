@@ -17,7 +17,7 @@ namespace BountiesAndBlades.CharacterClass
         private double[] StatsList = new double[6]; //0 Strength, 1 Speed, 2 Defense, 3 Intelligence, 4 Constitution, 5 Luck
         
 
-        private Dictionary<string, float> modifiers = new Dictionary<string, float>();
+        private Dictionary<int, List<float>> modifiers = new Dictionary<int, List<float>>();
         public string getName()
         {
             return className;
@@ -43,7 +43,7 @@ namespace BountiesAndBlades.CharacterClass
             return StatsList;
         }
 
-        public Dictionary<string, float> getModifiers()
+        public Dictionary<int, List<float>> getModifiers()
         {
             return modifiers;
         }
@@ -67,6 +67,15 @@ namespace BountiesAndBlades.CharacterClass
             Armor += i;
         }
 
+        public void setHP(int i)
+        {
+            HP = i;
+        }
+        public void setArmor(int i)
+        { 
+            Armor = i;
+        }
+
         public void setStat(int i, int v)
         {
             StatsList[i] = v;
@@ -74,9 +83,12 @@ namespace BountiesAndBlades.CharacterClass
 
         public void addModifier(int i, float s)
         {
-
-            modifiers.Add(i.ToString(), s);
-            StatsList[i] += ((s / 100)*StatsList[i]);
+            if (!modifiers.ContainsKey(i))
+            { 
+                modifiers.Add(i, new List<float>());
+            }
+                modifiers[i].Add(s);
+                StatsList[i] += ((s / 100) * StatsList[i]);          
         }
 
     }
