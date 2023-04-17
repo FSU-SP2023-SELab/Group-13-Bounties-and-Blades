@@ -26,4 +26,8 @@ public class EventClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     public void OnPointerExit(PointerEventData eventData){
         // Empty
     }
+
+    public void test(){
+        Debug.Log("Test");
+    }
 }
