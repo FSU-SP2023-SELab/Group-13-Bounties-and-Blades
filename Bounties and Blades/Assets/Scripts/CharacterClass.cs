@@ -15,7 +15,7 @@ namespace BountiesAndBlades.CharacterClass
         private double HP;
         private double Armor;
         private double[] StatsList = new double[6]; //0 Strength, 1 Speed, 2 Defense, 3 Intelligence, 4 Constitution, 5 Luck
-        //use 6 for HP, 7 for Armor when modifying stats.
+        
 
         private Dictionary<string, float> modifiers = new Dictionary<string, float>();
         public string getName()
@@ -57,14 +57,14 @@ namespace BountiesAndBlades.CharacterClass
         {
             classDescription = s;
         }
-        public void setHP(int i)
+        public void addHP(int i) //negative i value when attacked
         {
-            HP = i;
+            HP += i;
         }
-        public void setArmor(int i)
+        public void addArmor(int i) //negative i value when attacked
         {
 
-            Armor = i;
+            Armor += i;
         }
 
         public void setStat(int i, int v)
@@ -72,11 +72,11 @@ namespace BountiesAndBlades.CharacterClass
             StatsList[i] = v;
         }
 
-        public void addModifier(int i, StatModifier s)
+        public void addModifier(int i, float s)
         {
 
-            modifiers.Add(i.ToString(), s.Value);
-            StatsList[i] += ((s.Value / 100)*StatsList[i]);
+            modifiers.Add(i.ToString(), s);
+            StatsList[i] += ((s / 100)*StatsList[i]);
         }
 
     }
