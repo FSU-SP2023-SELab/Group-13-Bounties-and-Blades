@@ -20,8 +20,10 @@ public abstract class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
-        _highlight.SetActive(true);
-        MenuManager.Instance.ShowTileInfo(this);
+        if(_isWalkable){
+            _highlight.SetActive(true);
+            MenuManager.Instance.ShowTileInfo(this);
+        }
     }
 
     void OnMouseExit()
@@ -50,7 +52,7 @@ public abstract class Tile : MonoBehaviour
         }
         else
         {
-            if (UnitManager.Instance.SelectedHero != null)  // moving hero to selected tile
+            if (UnitManager.Instance.SelectedHero != null && _isWalkable)  // moving hero to selected tile
             {
                 SetUnit(UnitManager.Instance.SelectedHero);
                 UnitManager.Instance.SetSelectedHero(null);
