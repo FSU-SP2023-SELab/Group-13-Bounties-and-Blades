@@ -26,6 +26,10 @@ public class GridManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Update() {
+        
+    }
+
     public void GenerateGrid()
     {
         _tiles = new Dictionary<Vector2, Tile>();
@@ -40,7 +44,6 @@ public class GridManager : MonoBehaviour
 
                 spawnedTile.Init(x, y);
             
-
                 _tiles[new Vector2(x, y)] = spawnedTile;
             }
         }
