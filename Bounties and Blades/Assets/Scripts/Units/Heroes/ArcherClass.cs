@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BountiesAndBlades.CharacterClass;
 
-public class ArcherClass : CharacterClass
+public class ArcherClass : BaseHero
 {
     public ArcherClass()
     {
