@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BountiesAndBlades.CharacterClass
-{
     public class TestGUI : MonoBehaviour
     {
         private CharacterClass archer = new ArcherClass();
@@ -27,7 +25,7 @@ namespace BountiesAndBlades.CharacterClass
             int modLength = mods.GetLength(1);
             for (int i = 0; i < modLength; i++)
             {
-                GUILayout.Label(archer.getModifiers()[0, i] + ", " + archer.getModifiers()[1, i]);
+            GUILayout.Label(archer.getModifiers()[0, i] +", "+ archer.getModifiers()[1, i]);
             }
             archer2.addModifier(new BountiesAndBlades.CharacterStats.StatModifier(100, new BountiesAndBlades.CharacterStats.StatModType(), 1, 0));
             GUILayout.Label(archer2.getName());
@@ -39,5 +37,3 @@ namespace BountiesAndBlades.CharacterClass
             }
         }
     }
-
-}
