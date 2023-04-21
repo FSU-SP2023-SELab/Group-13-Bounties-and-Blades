@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3367890445171722789}
   - component: {fileID: 3367890445171722810}
   - component: {fileID: 3367890445171722811}
+  - component: {fileID: 8944242824889642865}
   m_Layer: 0
   m_Name: Thief
   m_TagString: Character
@@ -105,3 +106,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &8944242824889642865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367890445171722808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32146453f75478f45b6db4fa7d9649c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Thief
+  OccupiedTile: {fileID: 0}
+  Faction: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 495359657358798754}
   - component: {fileID: 495359657358798755}
   - component: {fileID: 495359657358798764}
+  - component: {fileID: 3835638558010498092}
   m_Layer: 0
   m_Name: Swordsman
   m_TagString: Character
@@ -105,3 +106,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3835638558010498092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495359657358798765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d4bd741f44f3948b66274ed92dc115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Swordsman
+  OccupiedTile: {fileID: 0}
+  Faction: 0

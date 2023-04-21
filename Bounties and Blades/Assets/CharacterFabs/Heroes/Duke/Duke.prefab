@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9137298665453448132}
   - component: {fileID: 7059855418994825217}
   - component: {fileID: 7638938564722237608}
+  - component: {fileID: 1671086500326613884}
   m_Layer: 0
   m_Name: Duke
   m_TagString: Character
@@ -105,3 +106,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1671086500326613884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4703420165273180344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60cfe9262de39444b81500431fb62f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Duke
+  OccupiedTile: {fileID: 0}
+  Faction: 0

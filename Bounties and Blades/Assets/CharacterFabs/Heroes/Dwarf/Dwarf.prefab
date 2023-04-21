@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1547014479691845518}
   - component: {fileID: 1547014479691845519}
   - component: {fileID: 1547014479691845516}
+  - component: {fileID: -4159636386580565518}
   m_Layer: 0
   m_Name: Dwarf
   m_TagString: Character
@@ -105,3 +106,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-4159636386580565518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547014479691845517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552748e098644b844a8685bf89def68c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Dwarf
+  OccupiedTile: {fileID: 0}
+  Faction: 0

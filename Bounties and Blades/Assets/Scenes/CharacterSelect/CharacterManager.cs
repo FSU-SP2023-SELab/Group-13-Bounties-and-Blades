@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using BountiesAndBlades.BaseHero;
 
 public class CharacterManager : MonoBehaviour
 {
     public CharacterDatabase characterDB;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI NumInParty;
+    public TextMeshProUGUI CharacterDesc;
     public GameObject obj;
     private GameObject clone;
 
@@ -29,6 +31,9 @@ public class CharacterManager : MonoBehaviour
 
     void Update(){
         NumInParty.text = team.Count.ToString();
+
+        UpdateDescription();
+
         if(team.Contains(obj)){
             addButton.interactable = false;
             removeButton.interactable = true;
@@ -43,9 +48,11 @@ public class CharacterManager : MonoBehaviour
         }
         if(team.Count == 3){
             playButton.gameObject.SetActive(true);
+            CharacterDesc.gameObject.SetActive(false);
         }
         else{
             playButton.gameObject.SetActive(false);
+            CharacterDesc.gameObject.SetActive(true);
         }
     }
     public void NextOption(){
@@ -55,6 +62,11 @@ public class CharacterManager : MonoBehaviour
             selectedOption = 0;
         }
         UpdateCharacter(selectedOption);
+    }
+
+    public void UpdateDescription(){
+        BaseHero myHero = obj.GetComponent<BaseHero>();
+        CharacterDesc.text = myHero.getDescription();
     }
 
     public void BackOption(){

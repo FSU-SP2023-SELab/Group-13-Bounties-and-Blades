@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3498413300413065813}
   - component: {fileID: 3498413300413065812}
   - component: {fileID: 3498413300413065815}
+  - component: {fileID: 9077110536478098953}
   m_Layer: 0
   m_Name: Bard
   m_TagString: Character
@@ -105,3 +106,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &9077110536478098953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498413300413065814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9943392bff16f68409ddd29e43f2f1b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Bard
+  OccupiedTile: {fileID: 0}
+  Faction: 0

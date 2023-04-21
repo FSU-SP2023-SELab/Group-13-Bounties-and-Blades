@@ -29,7 +29,7 @@ MonoBehaviour:
     characterObject: {fileID: 320598146547850021, guid: a63ea35993a39c54b8db91415ecfa126, type: 3}
   - characterName: Lancer
     characterObject: {fileID: 7178844080014676963, guid: e7fc10a126488324c89a0d8508415c96, type: 3}
-  - characterName: Lutist
+  - characterName: Lute Player
     characterObject: {fileID: 5436641600320727245, guid: ca393e3157106614ca78cc3ab7b5e140, type: 3}
   - characterName: Mage
     characterObject: {fileID: 8406230884835092392, guid: 98b7b5b6319f5c442bd78f6ea21e88cf, type: 3}

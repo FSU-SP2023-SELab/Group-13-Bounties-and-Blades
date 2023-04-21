@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2904912053119329253}
   - component: {fileID: 9185358672890928649}
   - component: {fileID: 3088894000528590991}
+  - component: {fileID: -3696082757434646509}
   m_Layer: 0
   m_Name: Enchantress
   m_TagString: Character
@@ -105,3 +106,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3696082757434646509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624706290662871736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e10901bd0350c48ad0cf599a2465f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Enchantress
+  OccupiedTile: {fileID: 0}
+  Faction: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9110619105453138067}
   - component: {fileID: 3846415108499594312}
   - component: {fileID: 9035480376532562368}
+  - component: {fileID: -1614788441185212015}
   m_Layer: 0
   m_Name: LutePlayer
   m_TagString: Character
@@ -105,3 +106,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &-1614788441185212015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436641600320727245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85bc1a4c1ef687b4ebdf195910bae3c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Lute Player
+  OccupiedTile: {fileID: 0}
+  Faction: 0

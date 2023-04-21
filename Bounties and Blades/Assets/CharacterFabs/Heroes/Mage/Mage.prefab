@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8406230884835092405}
   - component: {fileID: 8406230884835092406}
   - component: {fileID: 8406230884835092407}
+  - component: {fileID: 8084447488126347909}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Character
@@ -105,3 +106,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8084447488126347909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406230884835092392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79220f95b6843c4f93a9dfed9d90a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Mage
+  OccupiedTile: {fileID: 0}
+  Faction: 0
