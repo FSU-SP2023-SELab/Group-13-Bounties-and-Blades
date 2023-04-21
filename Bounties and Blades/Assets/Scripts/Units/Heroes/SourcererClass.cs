@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SourcererClass : MonoBehaviour
+public class SourcererClass : BaseHero
 {
-    // Start is called before the first frame update
-    void Start()
+    public SourcererClass()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        setName("Sourcerer");
+        setDescription("A sorcerer of dark arts, wielding forbidden spells, with a staff crackling with arcane energy, and eyes ablaze with malevolent power.");
+        setHP(10);
+        setArmor(0);
+        setStat(0, 4);
+        setStat(1, 5);
+        setStat(2, 3);
+        setStat(3, 10);
+        setStat(4, 5);
+        setStat(5, 7);
     }
 }
