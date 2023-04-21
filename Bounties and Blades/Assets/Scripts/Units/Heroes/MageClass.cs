@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MageClass : MonoBehaviour
+public class MageClass : BaseHero
 {
-    // Start is called before the first frame update
-    void Start()
+    public MageClass()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        setName("Mage");
+        setDescription("The mage, draped in a long robe adorned with glowing runes, wielded the power to bend reality to their will.");
+        setHP(10);
+        setArmor(0);
+        setStat(0, 7);
+        setStat(1, 7);
+        setStat(2, 6);
+        setStat(3, 6);
+        setStat(4, 6);
+        setStat(5, 4);
     }
 }

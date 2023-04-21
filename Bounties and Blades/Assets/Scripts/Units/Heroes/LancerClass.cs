@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LancerClass : MonoBehaviour
+public class LancerClass : BaseHero
 {
-    // Start is called before the first frame update
-    void Start()
+    public LancerClass()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        setName("Lancer");
+        setDescription("Armed with his lance and mighty steed, the Lancer rides into battle. He'll poke your eye out if you get too close.");
+        setHP(10);
+        setArmor(0);
+        setStat(0, 8);
+        setStat(1, 8);
+        setStat(2, 5);
+        setStat(3, 5);
+        setStat(4, 7);
+        setStat(5, 3);
     }
 }

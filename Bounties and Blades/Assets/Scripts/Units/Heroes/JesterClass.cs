@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JesterClass : MonoBehaviour
+public class JesterClass : BaseHero
 {
-    // Start is called before the first frame update
-    void Start()
+    public JesterClass()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        setName("Jester");
+        setDescription("The Jester is the life of the party! He is equipped with his juggling balls and an arsenal of jokes.");
+        setHP(10);
+        setArmor(0);
+        setStat(0, 3);
+        setStat(1, 6);
+        setStat(2, 3);
+        setStat(3, 8);
+        setStat(4, 5);
+        setStat(5, 9);
     }
 }
