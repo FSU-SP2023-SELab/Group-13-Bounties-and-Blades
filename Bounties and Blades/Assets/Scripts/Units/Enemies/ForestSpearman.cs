@@ -18,7 +18,7 @@ public class ForestSpearman : BaseHero
         setStat(4, 5);
         setStat(5, 5);
     }
-    public override double getDamage()
+    public new double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

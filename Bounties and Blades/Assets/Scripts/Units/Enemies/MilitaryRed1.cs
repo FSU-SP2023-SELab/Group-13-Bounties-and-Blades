@@ -18,7 +18,7 @@ public class MilitaryRed1 : BaseHero
         setStat(4, 6);
         setStat(5, 6);
     }
-    public override double getDamage()
+    public new double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);
