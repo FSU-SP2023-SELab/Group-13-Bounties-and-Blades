@@ -18,4 +18,15 @@ public class ThiefClass : BaseHero
         setStat(4, 6);
         setStat(5, 9);
     }
+
+    public new double getDamage(){
+
+        // Generate a random integer between 1 and 100
+        double randomNumber = Random.Range(1, 101);
+        double chanceToHit = getStat(5) * 10; 
+        if (randomNumber > chanceToHit){
+            return 0;
+        }
+        return getStat(1); // the stat that is returned depends on what kind of hero it is
+    }
 }
