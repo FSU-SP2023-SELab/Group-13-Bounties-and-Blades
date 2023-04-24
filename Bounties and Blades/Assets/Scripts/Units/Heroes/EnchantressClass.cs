@@ -18,4 +18,5 @@ public class EnchantressClass : BaseHero
         setStat(4, 6);
         setStat(5, 7);
     }
+
 }

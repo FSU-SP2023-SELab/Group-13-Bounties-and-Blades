@@ -14,7 +14,7 @@ public class MageClass : BaseHero
         setStat(0, 7);
         setStat(1, 7);
         setStat(2, 6);
-        setStat(3, 6);
+        setStat(3, 8);
         setStat(4, 6);
         setStat(5, 4);
     }

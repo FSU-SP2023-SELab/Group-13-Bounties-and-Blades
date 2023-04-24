@@ -86,6 +86,10 @@ namespace BountiesAndBlades.BaseHero{
             modifiers[i].Add(s);
             StatsList[i] += ((s / 100) * StatsList[i]);
         }
+
+        public void getDamage(){
+
+        }
     }
 }
 
