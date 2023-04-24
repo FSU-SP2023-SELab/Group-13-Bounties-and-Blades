@@ -16,6 +16,17 @@ public class JesterClass : BaseHero
         setStat(2, 3);
         setStat(3, 8);
         setStat(4, 5);
-        setStat(5, 9);
+        setStat(5, 10);
+    }
+    public override double getDamage()
+    {
+
+        double randomNumber = Random.Range(1, 101);
+        double chanceToHit = getStat(5) * 10;
+        if (randomNumber > chanceToHit)
+        {
+            return 0;
+        }
+        return getStat(1);
     }
 }

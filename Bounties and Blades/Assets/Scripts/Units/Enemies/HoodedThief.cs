@@ -1,24 +1,23 @@
+using BountiesAndBlades.BaseHero;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BountiesAndBlades.BaseHero;
 
-public class ArcherClass : BaseHero
+public class HoodedThief : BaseHero
 {
-    public ArcherClass()
+    public HoodedThief()
     {
-        setName("Archer");
-        setDescription("Swift and great from long ditances. The archer carries a bow and wears leather armor");
+        setName("Hooded Thief");
+        setDescription("Black Hood's younger and less successful brother.");
         setHP(10);
         setArmor(0);
-        setStat(0, 4);
+        setStat(0, 6);
         setStat(1, 7);
-        setStat(2, 3);
-        setStat(3, 6);
-        setStat(4, 6);
-        setStat(5, 3);
+        setStat(2, 4);
+        setStat(3, 5);
+        setStat(4, 5);
+        setStat(5, 7);
     }
-
     public override double getDamage()
     {
 

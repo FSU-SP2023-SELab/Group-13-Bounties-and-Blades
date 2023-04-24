@@ -1,24 +1,23 @@
+using BountiesAndBlades.BaseHero;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BountiesAndBlades.BaseHero;
 
-public class ArcherClass : BaseHero
+public class BlackHood : BaseHero
 {
-    public ArcherClass()
+    public BlackHood()
     {
-        setName("Archer");
-        setDescription("Swift and great from long ditances. The archer carries a bow and wears leather armor");
+        setName("Black Hood");
+        setDescription("Hooded death.");
         setHP(10);
         setArmor(0);
-        setStat(0, 4);
+        setStat(0, 7);
         setStat(1, 7);
-        setStat(2, 3);
-        setStat(3, 6);
-        setStat(4, 6);
-        setStat(5, 3);
+        setStat(2, 6);
+        setStat(3, 4);
+        setStat(4, 4);
+        setStat(5, 4);
     }
-
     public override double getDamage()
     {
 
@@ -28,6 +27,6 @@ public class ArcherClass : BaseHero
         {
             return 0;
         }
-        return getStat(1);
+        return getStat(0);
     }
 }

@@ -1,24 +1,23 @@
+using BountiesAndBlades.BaseHero;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BountiesAndBlades.BaseHero;
 
-public class ArcherClass : BaseHero
+public class MilitaryGreen2 : BaseHero
 {
-    public ArcherClass()
+    public MilitaryGreen2()
     {
-        setName("Archer");
-        setDescription("Swift and great from long ditances. The archer carries a bow and wears leather armor");
+        setName("Miltary Green 2");
+        setDescription("Rank 2 in the Green Military.");
         setHP(10);
         setArmor(0);
-        setStat(0, 4);
+        setStat(0, 7);
         setStat(1, 7);
-        setStat(2, 3);
-        setStat(3, 6);
-        setStat(4, 6);
-        setStat(5, 3);
+        setStat(2, 7);
+        setStat(3, 7);
+        setStat(4, 7);
+        setStat(5, 7);
     }
-
     public override double getDamage()
     {
 
@@ -28,6 +27,6 @@ public class ArcherClass : BaseHero
         {
             return 0;
         }
-        return getStat(1);
+        return getStat(0);
     }
 }

@@ -1,24 +1,23 @@
+using BountiesAndBlades.BaseHero;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BountiesAndBlades.BaseHero;
 
-public class ArcherClass : BaseHero
+public class Goblin : BaseHero
 {
-    public ArcherClass()
+    public Goblin()
     {
-        setName("Archer");
-        setDescription("Swift and great from long ditances. The archer carries a bow and wears leather armor");
+        setName("Goblin");
+        setDescription("Gobbling.");
         setHP(10);
         setArmor(0);
         setStat(0, 4);
         setStat(1, 7);
-        setStat(2, 3);
-        setStat(3, 6);
-        setStat(4, 6);
-        setStat(5, 3);
+        setStat(2, 4);
+        setStat(3, 7);
+        setStat(4, 4);
+        setStat(5, 5);
     }
-
     public override double getDamage()
     {
 
