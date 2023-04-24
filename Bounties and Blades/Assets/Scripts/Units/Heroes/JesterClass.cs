@@ -29,4 +29,5 @@ public class JesterClass : BaseHero
         }
         return getStat(1);
     }
+
 }

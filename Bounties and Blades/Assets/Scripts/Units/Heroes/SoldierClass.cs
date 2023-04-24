@@ -16,6 +16,16 @@ public class SoldierClass : BaseHero
         setStat(2, 9);
         setStat(3, 2);
         setStat(4, 7);
-        setStat(5, 3);
+        setStat(5, 4);
+    }
+    public new double getDamage(){
+
+        // Generate a random integer between 1 and 100
+        double randomNumber = Random.Range(1, 101);
+        double chanceToHit = getStat(5) * 10; 
+        if (randomNumber > chanceToHit){
+            return 0;
+        }
+        return getStat(0); // the stat that is returned depends on what kind of hero it is
     }
 }
