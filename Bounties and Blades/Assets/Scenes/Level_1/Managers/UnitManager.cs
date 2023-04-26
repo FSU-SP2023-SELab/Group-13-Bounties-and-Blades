@@ -16,6 +16,11 @@ public class UnitManager : MonoBehaviour
 
     private List<GameObject> team = CharacterManager.team;
 
+    [SerializeField]
+    private List<GameObject> enemies;
+
+    private List<GameObject> spawnedEnemies;
+
     void Awake()
     {
         Instance = this;
@@ -46,15 +51,19 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        var enemyCount = 0;
+        var enemyCount = Random.Range(1,5);
 
         for (int i = 0; i < enemyCount; i++)
         {
-            var randomPrefab = GetRandomUnit<BaseEnemy>(Faction.Enemy);
-            var spawnedEnemy = Instantiate(randomPrefab);
+            var r = Random.Range(0,enemies.Count);
+            var enemyToSpawn = enemies[r];
+            spawnedEnemies.Add(enemyToSpawn);
+            
+            BaseHero myEnemy = enemyToSpawn.GetComponent<BaseHero>(); 
+
             var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
-            //randomSpawnTile.SetUnit(spawnedEnemy,);
+            randomSpawnTile.SetUnit(myEnemy,enemyToSpawn);
         }
 
         GameManager.Instance.ChangeState(GameState.HeroesTurn);

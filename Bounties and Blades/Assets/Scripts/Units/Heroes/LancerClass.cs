@@ -12,7 +12,7 @@ public class LancerClass : BaseHero
         setHP(10);
         setArmor(0);
         setStat(0, 8);
-        setStat(1, 6);
+        setStat(1, 4);
         setStat(2, 5);
         setStat(3, 5);
         setStat(4, 7);

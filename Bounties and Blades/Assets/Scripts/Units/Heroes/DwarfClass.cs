@@ -11,11 +11,11 @@ public class DwarfClass : BaseHero
         setDescription("Small and cunning, the dwarf will make quick work of any enemies. Armed with a blade and quick to the draw.");
         setHP(10);
         setArmor(0);
-        setStat(0, 5);
-        setStat(1, 5);
+        setStat(0, 8);
+        setStat(1, 2);
         setStat(2, 5);
         setStat(3, 7);
-        setStat(4, 6);
+        setStat(4, 8);
         setStat(5, 6);
     }
 

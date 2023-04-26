@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BountiesAndBlades.BaseHero;
+using UnityEngine.SceneManagement;
 
 public abstract class Tile : MonoBehaviour
 {
@@ -31,8 +32,11 @@ public abstract class Tile : MonoBehaviour
 
         //var tiles = GridManager.Instance.getTiles();
 
-        if(!_isWalkable || OccupiedUnit != null){ //this mmight need to change bc if it's not null you can pick up item or start battle
+        if(!_isWalkable){ //this mmight need to change bc if it's not null you can pick up item or start battle
             return false;
+        }
+        if(OccupiedUnit != null){
+            //if()
         }
         if(Mathf.Abs(tileX - heroX) <= speed && Mathf.Abs(tileY - heroY) <= speed){
             return true;
@@ -74,10 +78,10 @@ public abstract class Tile : MonoBehaviour
             {
                 if (UnitManager.Instance.SelectedHero != null) // we are clicking on an ememy at this point to attack them
                 {
-                    // delete the enemy as soon as we click on it
-                    var enemy = (BaseEnemy)OccupiedUnit;        
-                    Destroy(enemy.gameObject);                      // should be doing combat stuff here such as calculating damage
-                    UnitManager.Instance.SetSelectedHero(null, null);
+                    // var hero = UnitManager.Instance.SelectedObject;
+                    // var enemy = CloneOccupiedObject;
+                    
+                    proceedToCombat();
                 }
             }
         }
@@ -97,6 +101,7 @@ public abstract class Tile : MonoBehaviour
         if (unit.OccupiedTile != null) //this is when you're moving away from a tile i think -- Marconi
         {
             Destroy(unit.OccupiedTile.CloneOccupiedObject);
+            //Destroy(CloneOccupiedObject);
             unit.OccupiedTile.OccupiedUnit = null;
             unit.OccupiedTile.OccupiedObject = null;
         }
@@ -108,31 +113,8 @@ public abstract class Tile : MonoBehaviour
         CloneOccupiedObject = Instantiate(obj,new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
 
     }
-}
 
-/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Tile : MonoBehaviour
-{
-    [SerializeField] private Color _baseColor, _offsetColor;
-    [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private GameObject _highlight;
-
-    public void Init(bool isOffset)
-    {
-        _renderer.color = isOffset ? _offsetColor : _baseColor;
-    }
-
-    void OnMouseEnter()
-    {
-        _highlight.SetActive(true);
-    }
-
-    void OnMouseExit()
-    {
-        _highlight.SetActive(false);
+    public void proceedToCombat(){
+        SceneManager.LoadScene("BattleScene");
     }
 }
-*/
