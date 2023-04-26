@@ -12,7 +12,7 @@ public class DwarfClass : BaseHero
         setHP(10);
         setArmor(0);
         setStat(0, 5);
-        setStat(1, 7);
+        setStat(1, 5);
         setStat(2, 5);
         setStat(3, 7);
         setStat(4, 6);

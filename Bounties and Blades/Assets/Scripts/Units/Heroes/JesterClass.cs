@@ -12,7 +12,7 @@ public class JesterClass : BaseHero
         setHP(10);
         setArmor(0);
         setStat(0, 3);
-        setStat(1, 6);
+        setStat(1, 3);
         setStat(2, 3);
         setStat(3, 8);
         setStat(4, 5);

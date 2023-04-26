@@ -12,7 +12,7 @@ public class ThiefClass : BaseHero
         setHP(10);
         setArmor(0);
         setStat(0, 4);
-        setStat(1, 10);
+        setStat(1, 6);
         setStat(2, 6);
         setStat(3, 7);
         setStat(4, 6);

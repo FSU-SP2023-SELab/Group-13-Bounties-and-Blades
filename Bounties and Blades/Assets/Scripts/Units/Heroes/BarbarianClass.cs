@@ -12,7 +12,7 @@ public class BarbarianClass : BaseHero
         setHP(10);
         setArmor(0);
         setStat(0, 9);
-        setStat(1, 3);
+        setStat(1, 2);
         setStat(2, 8);
         setStat(3, 4);
         setStat(4, 6);

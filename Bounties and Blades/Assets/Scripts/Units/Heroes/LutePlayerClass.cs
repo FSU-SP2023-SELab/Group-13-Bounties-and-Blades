@@ -12,7 +12,7 @@ public class LutePlayerClass : BaseHero
         setHP(10);
         setArmor(0);
         setStat(0, 4);
-        setStat(1, 6);
+        setStat(1, 4);
         setStat(2, 4);
         setStat(3, 8);
         setStat(4, 7);
