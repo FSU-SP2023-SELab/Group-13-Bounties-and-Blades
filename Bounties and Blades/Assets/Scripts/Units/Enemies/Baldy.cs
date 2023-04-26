@@ -13,7 +13,7 @@ public class Baldy : BaseHero
         setHP(10);
         setArmor(0);
         setStat(0, 6);
-        setStat(1, 6);
+        setStat(1, 5);
         setStat(2, 6);
         setStat(3, 5);
         setStat(4, 4);

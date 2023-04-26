@@ -12,7 +12,7 @@ public class MilitaryGreen4 : BaseHero
         setHP(10);
         setArmor(0);
         setStat(0, 9);
-        setStat(1, 9);
+        setStat(1, 7);
         setStat(2, 9);
         setStat(3, 9);
         setStat(4, 9);

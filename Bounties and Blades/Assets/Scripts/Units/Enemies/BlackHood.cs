@@ -12,7 +12,7 @@ public class BlackHood : BaseHero
         setHP(10);
         setArmor(0);
         setStat(0, 7);
-        setStat(1, 7);
+        setStat(1, 4);
         setStat(2, 6);
         setStat(3, 4);
         setStat(4, 4);
