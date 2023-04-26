@@ -3,7 +3,7 @@ namespace BountiesAndBlades.CharacterItems
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
-    using BountiesAndBlades.CharacterClass;
+    using BountiesAndBlades.BaseHero;
     using System.Data;
 
     public enum ItemType
@@ -22,13 +22,13 @@ namespace BountiesAndBlades.CharacterItems
         public Dictionary<int, List<float>> modifiers; //items may carry multiple modifiers, represented as a percent +/-
         public ItemType itemType;
 
-        public virtual void Use(CharacterClass characterClass)
+        public virtual void Use(BaseHero hero, CharacterItems item)
         {
             foreach (KeyValuePair<int, List<float>> k in modifiers)
             {
                 foreach (float f in k.Value)
                 {
-                    characterClass.addModifier(k.Key, f);
+                    hero.addModifier(k.Key, f);
                 }
             }
         }

@@ -1,8 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+namespace BountiesAndBlades.BaseHero {
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using BountiesAndBlades.CharacterItems;
+    using BountiesAndBlades.CharacterStats;
+    using BountiesAndBlades.InventorySystem;
 
-namespace BountiesAndBlades.BaseHero{
+
+
     public class BaseHero : BaseUnit
     {
         private static string className;
@@ -11,6 +16,7 @@ namespace BountiesAndBlades.BaseHero{
         private double HP;
         private double Armor;
         private double[] StatsList = new double[6]; //0 Strength, 1 Speed, 2 Defense, 3 Intelligence, 4 Constitution, 5 Luck
+        public static List<CharacterItems> inventory = new List<CharacterItems>();
 
 
         private Dictionary<int, List<float>> modifiers = new Dictionary<int, List<float>>();
@@ -87,9 +93,8 @@ namespace BountiesAndBlades.BaseHero{
             StatsList[i] += ((s / 100) * StatsList[i]);
         }
 
-        public void getDamage(){
+        public void getDamage() {
 
         }
     }
 }
-
