@@ -4,7 +4,7 @@ namespace BountiesAndBlades.BaseHero {
     using UnityEngine;
     using BountiesAndBlades.CharacterItems;
     using BountiesAndBlades.CharacterStats;
-    using BountiesAndBlades.InventorySystem;
+    // using BountiesAndBlades.InventorySystem;
 
 
 

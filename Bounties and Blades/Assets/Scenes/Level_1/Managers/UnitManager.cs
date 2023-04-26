@@ -19,7 +19,6 @@ public class UnitManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> enemies;
 
-    private List<GameObject> spawnedEnemies;
 
     void Awake()
     {
@@ -57,8 +56,7 @@ public class UnitManager : MonoBehaviour
         {
             var r = Random.Range(0,enemies.Count);
             var enemyToSpawn = enemies[r];
-            spawnedEnemies.Add(enemyToSpawn);
-            
+             
             BaseHero myEnemy = enemyToSpawn.GetComponent<BaseHero>(); 
 
             var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
