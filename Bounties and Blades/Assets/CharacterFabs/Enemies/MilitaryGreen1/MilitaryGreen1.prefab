@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5100619364356077603}
   - component: {fileID: 5100619364356077602}
   - component: {fileID: 5100619364356077601}
+  - component: {fileID: 2053474651513906668}
   m_Layer: 0
   m_Name: MilitaryGreen1
   m_TagString: Character
@@ -105,3 +106,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &2053474651513906668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100619364356077600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6859819c60ab92e40993ce69ae73e27f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Military Green 1
+  OccupiedTile: {fileID: 0}
+  Faction: 1

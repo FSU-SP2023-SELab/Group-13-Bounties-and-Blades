@@ -77,3 +77,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b60c6ba8f1cb33c4f87c18e63865d51e, type: 3}
+--- !u!1 &6025148482479568274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 941728462002976420, guid: b60c6ba8f1cb33c4f87c18e63865d51e, type: 3}
+  m_PrefabInstance: {fileID: 6812839666839077686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9008006954746219902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025148482479568274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19688c76525f3cb4ab28806394736701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Military Red 1
+  OccupiedTile: {fileID: 0}
+  Faction: 1

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1893386289556220491}
   - component: {fileID: 8695525785034778328}
   - component: {fileID: 8665006716362822871}
+  - component: {fileID: 6087238935324241692}
   m_Layer: 0
   m_Name: ForestSpearman
   m_TagString: Untagged
@@ -105,3 +106,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6087238935324241692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920746781253806914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4944fcd1dd889439b2a723d4fdeb15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Forest Spearman
+  OccupiedTile: {fileID: 0}
+  Faction: 1

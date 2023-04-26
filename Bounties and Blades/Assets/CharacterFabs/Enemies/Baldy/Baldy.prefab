@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3528392327253337900}
   - component: {fileID: 5916956187400514495}
   - component: {fileID: 5976768599210056112}
+  - component: {fileID: 6583632032286224910}
   m_Layer: 0
   m_Name: Baldy
   m_TagString: Untagged
@@ -105,3 +106,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6583632032286224910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465005245278086693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e09291429353e49931191570014f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Baldy
+  OccupiedTile: {fileID: 0}
+  Faction: 1

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3952246589109360382}
   - component: {fileID: 6067242842398677613}
   - component: {fileID: 6115837898066831458}
+  - component: {fileID: -7497500733206749686}
   m_Layer: 0
   m_Name: MilitaryRed2
   m_TagString: Untagged
@@ -105,3 +106,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-7497500733206749686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906950313161037815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3da1331c7466554ba00061c05091c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Military Red 2
+  OccupiedTile: {fileID: 0}
+  Faction: 1

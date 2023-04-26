@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 894324318822633417}
   - component: {fileID: 7963306799585690458}
   - component: {fileID: 7957761885021106517}
+  - component: {fileID: 1053231646858801883}
   m_Layer: 0
   m_Name: MilitaryGreen4
   m_TagString: Enemy
@@ -105,3 +106,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1053231646858801883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903027748084567744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2bb3fcaa33d85746b248df164925022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitName: Military Green 4
+  OccupiedTile: {fileID: 0}
+  Faction: 1
