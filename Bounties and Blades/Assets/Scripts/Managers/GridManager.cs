@@ -16,6 +16,10 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<Vector2, Tile> _tiles;
 
+    public Dictionary<Vector2, Tile> getTiles(){
+        return _tiles;
+    }
+
   /*  void Start()
     {
         GenerateGrid();
@@ -38,7 +42,7 @@ public class GridManager : MonoBehaviour
             for (int y = 0; y < _height; y++)
             {
                 var randomTile = Random.Range(0, 6) == 3 ? _mountainTile : _grassTile;
-                var spawnedTile = Instantiate(randomTile, new Vector3(x, y), Quaternion.identity);
+                var spawnedTile = Instantiate(randomTile, new Vector3(x, y, -1), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
 
 

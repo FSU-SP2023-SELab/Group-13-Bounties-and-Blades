@@ -12,6 +12,8 @@ public class UnitManager : MonoBehaviour
     private List<ScriptableUnit> _units;
     public BaseHero SelectedHero;
 
+    public GameObject SelectedObject;
+
     private List<GameObject> team = CharacterManager.team;
 
     void Awake()
@@ -22,18 +24,20 @@ public class UnitManager : MonoBehaviour
 
     }
 
+
     public void SpawnHeroes()
     {
-        var heroCount = 3;
+        var heroCount = team.Count;
 
         for (int i = 0; i < heroCount; i++)
         {
-            // var randomPrefab = team[i];
-            var randomPrefab = GetRandomUnit<BaseHero>(Faction.Hero);
-            var spawnedHero = Instantiate(randomPrefab);
+            var heroToSpawn = team[i];
+
+            BaseHero myHero = heroToSpawn.GetComponent<BaseHero>();            
+
             var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
 
-            randomSpawnTile.SetUnit(spawnedHero);
+            randomSpawnTile.SetUnit(myHero, heroToSpawn);
             
         }
 
@@ -42,7 +46,7 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        var enemyCount = 1;
+        var enemyCount = 0;
 
         for (int i = 0; i < enemyCount; i++)
         {
@@ -50,7 +54,7 @@ public class UnitManager : MonoBehaviour
             var spawnedEnemy = Instantiate(randomPrefab);
             var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
-            randomSpawnTile.SetUnit(spawnedEnemy);
+            //randomSpawnTile.SetUnit(spawnedEnemy,);
         }
 
         GameManager.Instance.ChangeState(GameState.HeroesTurn);
@@ -63,8 +67,9 @@ public class UnitManager : MonoBehaviour
         return (T)_units.Where(u => u.Faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
     }
 
-    public void SetSelectedHero(BaseHero hero)
+    public void SetSelectedHero(BaseHero hero, GameObject obj)
     {
+        SelectedObject = obj;
         SelectedHero = hero;
         MenuManager.Instance.ShowSelectedHero(hero);
     }
