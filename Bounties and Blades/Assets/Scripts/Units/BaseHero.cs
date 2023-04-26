@@ -17,6 +17,8 @@ namespace BountiesAndBlades.BaseHero {
         private double Armor;
         private double[] StatsList = new double[6]; //0 Strength, 1 Speed, 2 Defense, 3 Intelligence, 4 Constitution, 5 Luck
         public static List<CharacterItems> inventory = new List<CharacterItems>();
+        public static CharacterItems EquippedWeapon = null;
+        public static CharacterItems EquippedArmor = null;
 
 
         private Dictionary<int, List<float>> modifiers = new Dictionary<int, List<float>>();
@@ -95,6 +97,14 @@ namespace BountiesAndBlades.BaseHero {
 
         public void getDamage() {
 
+        }
+
+        public void useItem(CharacterItems item) 
+        {
+            // need to call this from the child class,
+            // call the use function on item, all the
+            // subclasses have it overwritten to handle
+            // their respective cases
         }
     }
 }
