@@ -9,7 +9,6 @@ public class SourcererClass : BaseHero
     {
         setName("Sourcerer");
         setDescription("A sorcerer of dark arts, wielding forbidden spells, with a staff crackling with arcane energy, and eyes ablaze with malevolent power.");
-        setHP(10);
         setArmor(0);
         setStat(0, 4);
         setStat(1, 3);
@@ -17,8 +16,11 @@ public class SourcererClass : BaseHero
         setStat(3, 10);
         setStat(4, 5);
         setStat(5, 7);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage(){
+    public override double getDamage(){
 
         // Generate a random integer between 1 and 100
         double randomNumber = Random.Range(1, 101);

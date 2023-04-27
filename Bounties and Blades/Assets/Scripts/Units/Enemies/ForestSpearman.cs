@@ -9,7 +9,6 @@ public class ForestSpearman : BaseHero
     {
         setName("Forest Spearman");
         setDescription("SPEARitual.");
-        setHP(10);
         setArmor(0);
         setStat(0, 5);
         setStat(1, 5);
@@ -17,8 +16,11 @@ public class ForestSpearman : BaseHero
         setStat(3, 5);
         setStat(4, 5);
         setStat(5, 5);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

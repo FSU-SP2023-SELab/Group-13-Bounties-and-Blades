@@ -9,7 +9,6 @@ public class LutePlayerClass : BaseHero
     {
         setName("Lute Player");
         setDescription("The Lute Player can lure enemies in with sweet melodies and pierce them with shrieking chords. He can play the lute ... and ... that's it.");
-        setHP(10);
         setArmor(0);
         setStat(0, 4);
         setStat(1, 4);
@@ -17,9 +16,12 @@ public class LutePlayerClass : BaseHero
         setStat(3, 8);
         setStat(4, 7);
         setStat(5, 6);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
 
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

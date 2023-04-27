@@ -9,7 +9,6 @@ public class MageClass : BaseHero
     {
         setName("Mage");
         setDescription("The mage, draped in a long robe adorned with glowing runes, wielded the power to bend reality to their will.");
-        setHP(10);
         setArmor(0);
         setStat(0, 7);
         setStat(1, 3);
@@ -17,9 +16,12 @@ public class MageClass : BaseHero
         setStat(3, 8);
         setStat(4, 6);
         setStat(5, 4);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
 
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

@@ -9,7 +9,6 @@ public class RogueClass : BaseHero
     {
         setName("Rogue");
         setDescription("A cunning and elusive rogue with a sharp wit, quick reflexes, and a penchant for thievery and sabotage.");
-        setHP(10);
         setArmor(0);
         setStat(0, 5);
         setStat(1, 6);
@@ -17,8 +16,11 @@ public class RogueClass : BaseHero
         setStat(3, 7);
         setStat(4, 7);
         setStat(5, 8);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage(){
+    public override double getDamage(){
 
         // Generate a random integer between 1 and 100
         double randomNumber = Random.Range(1, 101);

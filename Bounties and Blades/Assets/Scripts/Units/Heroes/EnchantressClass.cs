@@ -9,7 +9,6 @@ public class EnchantressClass : BaseHero
     {
         setName("Enchantress");
         setDescription("Don't get too close or you'll be entrapped by her dark spells. The Enchantress uses magic to banish enemies to the shadow realm.");
-        setHP(10);
         setArmor(0);
         setStat(0, 4);
         setStat(1, 5);
@@ -17,8 +16,11 @@ public class EnchantressClass : BaseHero
         setStat(3, 7);
         setStat(4, 6);
         setStat(5, 7);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

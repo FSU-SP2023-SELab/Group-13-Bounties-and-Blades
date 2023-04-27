@@ -9,7 +9,6 @@ public class Goblin : BaseHero
     {
         setName("Goblin");
         setDescription("Gobbling.");
-        setHP(10);
         setArmor(0);
         setStat(0, 4);
         setStat(1, 6);
@@ -17,8 +16,11 @@ public class Goblin : BaseHero
         setStat(3, 7);
         setStat(4, 4);
         setStat(5, 5);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

@@ -9,7 +9,6 @@ public class Murderer : BaseHero
     {
         setName("Murderer");
         setDescription("Murderer... nuff said.");
-        setHP(10);
         setArmor(0);
         setStat(0, 7);
         setStat(1, 7);
@@ -17,8 +16,11 @@ public class Murderer : BaseHero
         setStat(3, 5);
         setStat(4, 3);
         setStat(5, 5);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

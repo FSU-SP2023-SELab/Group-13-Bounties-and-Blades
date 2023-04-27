@@ -8,8 +8,6 @@ public class BardClass : BaseHero
     public BardClass()
     {
         setName("Bard");
-        setDescription("Weaves his way into an enemy's psyche with imposing wordplay. The Bard speaks softly and carries a big stick.");
-        setHP(10);
         setArmor(0);
         setStat(0, 5);
         setStat(1, 3);
@@ -17,8 +15,11 @@ public class BardClass : BaseHero
         setStat(3, 7);
         setStat(4, 7);
         setStat(5, 6);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

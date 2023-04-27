@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BountiesAndBlades.BaseHero;
-using UnityEngine.SceneManagement;
+
 
 public abstract class Tile : MonoBehaviour
 {
@@ -16,6 +16,9 @@ public abstract class Tile : MonoBehaviour
     public GameObject OccupiedObject;
 
     public GameObject CloneOccupiedObject;
+
+    
+
     public bool Walkable => _isWalkable && OccupiedUnit == null;
 
     public bool isWalkable(){
@@ -78,10 +81,12 @@ public abstract class Tile : MonoBehaviour
             {
                 if (UnitManager.Instance.SelectedHero != null) // we are clicking on an ememy at this point to attack them
                 {
-                    // var hero = UnitManager.Instance.SelectedObject;
-                    // var enemy = CloneOccupiedObject;
                     
-                    proceedToCombat();
+                    var attacking = UnitManager.Instance.SelectedObject;
+                    var defending = OccupiedObject;
+                    
+                    
+                    UnitManager.Instance.proceedToCombat(attacking,defending);
                 }
             }
         }
@@ -114,7 +119,5 @@ public abstract class Tile : MonoBehaviour
 
     }
 
-    public void proceedToCombat(){
-        SceneManager.LoadScene("BattleScene");
-    }
+    
 }

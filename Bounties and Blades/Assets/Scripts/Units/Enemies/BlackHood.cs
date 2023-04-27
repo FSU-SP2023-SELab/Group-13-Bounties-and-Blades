@@ -9,7 +9,6 @@ public class BlackHood : BaseHero
     {
         setName("Black Hood");
         setDescription("Hooded death.");
-        setHP(10);
         setArmor(0);
         setStat(0, 7);
         setStat(1, 4);
@@ -17,8 +16,11 @@ public class BlackHood : BaseHero
         setStat(3, 4);
         setStat(4, 4);
         setStat(5, 4);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

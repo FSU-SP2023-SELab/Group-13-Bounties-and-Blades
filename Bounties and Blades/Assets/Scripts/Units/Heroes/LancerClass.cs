@@ -9,7 +9,6 @@ public class LancerClass : BaseHero
     {
         setName("Lancer");
         setDescription("Armed with his lance and mighty steed, the Lancer rides into battle. He'll poke your eye out if you get too close.");
-        setHP(10);
         setArmor(0);
         setStat(0, 8);
         setStat(1, 4);
@@ -17,9 +16,12 @@ public class LancerClass : BaseHero
         setStat(3, 5);
         setStat(4, 7);
         setStat(5, 3);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
 
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

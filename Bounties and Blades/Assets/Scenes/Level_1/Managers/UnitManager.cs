@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using BountiesAndBlades.BaseHero;
+using UnityEngine.SceneManagement;
 
 public class UnitManager : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class UnitManager : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> enemies;
+
+    public static GameObject attacking;
+    public static GameObject defending;
 
 
     void Awake()
@@ -79,5 +83,17 @@ public class UnitManager : MonoBehaviour
         SelectedObject = obj;
         SelectedHero = hero;
         MenuManager.Instance.ShowSelectedHero(hero);
+    }
+
+    public void proceedToCombat(GameObject att, GameObject def){
+        attacking = att;
+        defending = def;
+        if(attacking == null){
+             Debug.Log("Attacking was null");
+        }
+        if(defending == null){
+            Debug.Log("defending was null");
+        }
+        SceneManager.LoadScene("BattleScene");
     }
 }

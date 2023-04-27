@@ -9,7 +9,6 @@ public class SoldierClass : BaseHero
     {
         setName("Soldier");
         setDescription("The soldier is a strong ass mf.");
-        setHP(10);
         setArmor(0);
         setStat(0, 10);
         setStat(1, 2);
@@ -17,8 +16,11 @@ public class SoldierClass : BaseHero
         setStat(3, 2);
         setStat(4, 7);
         setStat(5, 4);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage(){
+    public override double getDamage(){
 
         // Generate a random integer between 1 and 100
         double randomNumber = Random.Range(1, 101);

@@ -9,7 +9,6 @@ public class SwordsmanClass : BaseHero
     {
         setName("Swordsman");
         setDescription("A master swordsman, wielding a gleaming blade with unmatched skill, swift and deadly in battle, feared and respected by all.");
-        setHP(10);
         setArmor(0);
         setStat(0, 6);
         setStat(1, 4);
@@ -17,8 +16,11 @@ public class SwordsmanClass : BaseHero
         setStat(3, 7);
         setStat(4, 6);
         setStat(5, 7);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage(){
+    public override double getDamage(){
 
         // Generate a random integer between 1 and 100
         double randomNumber = Random.Range(1, 101);

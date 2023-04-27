@@ -9,17 +9,19 @@ public class ArcherClass : BaseHero
     {
         setName("Archer");
         setDescription("Swift and great from long ditances. The archer carries a bow and wears leather armor");
-        setHP(10);
         setArmor(0);
         setStat(0, 4);
         setStat(1, 5);
         setStat(2, 3);
         setStat(3, 6);
         setStat(4, 6);
-        setStat(5, 3);
+        setStat(5, 5);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
 
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

@@ -9,7 +9,6 @@ public class HoodedThief : BaseHero
     {
         setName("Hooded Thief");
         setDescription("Black Hood's younger and less successful brother.");
-        setHP(10);
         setArmor(0);
         setStat(0, 6);
         setStat(1, 5);
@@ -17,8 +16,11 @@ public class HoodedThief : BaseHero
         setStat(3, 5);
         setStat(4, 5);
         setStat(5, 7);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

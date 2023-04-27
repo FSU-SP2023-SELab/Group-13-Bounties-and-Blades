@@ -9,7 +9,6 @@ public class JesterClass : BaseHero
     {
         setName("Jester");
         setDescription("The Jester is the life of the party! He is equipped with his juggling balls and an arsenal of jokes.");
-        setHP(10);
         setArmor(0);
         setStat(0, 3);
         setStat(1, 3);
@@ -17,8 +16,11 @@ public class JesterClass : BaseHero
         setStat(3, 8);
         setStat(4, 5);
         setStat(5, 10);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

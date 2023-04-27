@@ -9,7 +9,6 @@ public class BarbarianClass : BaseHero
     {
         setName("Barbarian");
         setDescription("The Barbarian smashes his way through enemies with ease. Strong but effective, carries a club.");
-        setHP(10);
         setArmor(0);
         setStat(0, 9);
         setStat(1, 2);
@@ -17,8 +16,11 @@ public class BarbarianClass : BaseHero
         setStat(3, 4);
         setStat(4, 6);
         setStat(5, 3);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

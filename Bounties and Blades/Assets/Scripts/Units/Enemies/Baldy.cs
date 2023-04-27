@@ -10,7 +10,6 @@ public class Baldy : BaseHero
     {
         setName("Baldy");
         setDescription("Bald.");
-        setHP(10);
         setArmor(0);
         setStat(0, 6);
         setStat(1, 5);
@@ -18,8 +17,11 @@ public class Baldy : BaseHero
         setStat(3, 5);
         setStat(4, 4);
         setStat(5, 5);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

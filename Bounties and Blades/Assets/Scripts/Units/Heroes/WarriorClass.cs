@@ -9,7 +9,6 @@ public class WarriorClass : BaseHero
     {
         setName("Warrior");
         setDescription("As a skilled warrior with lightning-fast reflexes and unmatched prowess in melee combat, you lead the charge against hordes of enemies.");
-        setHP(10);
         setArmor(0);
         setStat(0, 7);
         setStat(1, 5);
@@ -17,9 +16,12 @@ public class WarriorClass : BaseHero
         setStat(3, 4);
         setStat(4, 8);
         setStat(5, 7);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
 
-    public new double getDamage(){
+    public override double getDamage(){
 
         // Generate a random integer between 1 and 100
         double randomNumber = Random.Range(1, 101);

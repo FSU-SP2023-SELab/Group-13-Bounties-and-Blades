@@ -9,7 +9,6 @@ public class ThiefClass : BaseHero
     {
         setName("Thief");
         setDescription("A shadowy figure with keen eyes and swift movements, wielding enchanted tools to pilfer treasures from the unsuspecting.");
-        setHP(10);
         setArmor(0);
         setStat(0, 4);
         setStat(1, 6);
@@ -17,9 +16,12 @@ public class ThiefClass : BaseHero
         setStat(3, 7);
         setStat(4, 6);
         setStat(5, 9);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
 
-    public new double getDamage(){
+    public override double getDamage(){
 
         // Generate a random integer between 1 and 100
         double randomNumber = Random.Range(1, 101);

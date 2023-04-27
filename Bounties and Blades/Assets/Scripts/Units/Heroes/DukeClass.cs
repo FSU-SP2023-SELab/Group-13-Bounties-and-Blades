@@ -9,7 +9,6 @@ public class DukeClass : BaseHero
     {
         setName("Duke");
         setDescription("A man of royalty! The Duke has an air of confidence and wields a sabre");
-        setHP(10);
         setArmor(0);
         setStat(0, 4);
         setStat(1, 3);
@@ -17,8 +16,11 @@ public class DukeClass : BaseHero
         setStat(3, 7);
         setStat(4, 8);
         setStat(5, 4);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);

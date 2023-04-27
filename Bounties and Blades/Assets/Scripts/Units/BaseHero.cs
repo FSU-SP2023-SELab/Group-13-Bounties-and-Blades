@@ -8,12 +8,13 @@ namespace BountiesAndBlades.BaseHero {
 
 
 
-    public class BaseHero : BaseUnit
+    public abstract class BaseHero : BaseUnit
     {
         private static string className;
         private static string classDescription;
 
-        private double HP;
+        private int HP;
+        private int maxHP;
         private double Armor;
         private double[] StatsList = new double[6]; //0 Strength, 1 Speed, 2 Defense, 3 Intelligence, 4 Constitution, 5 Luck
         public static List<CharacterItems> inventory = new List<CharacterItems>();
@@ -30,9 +31,13 @@ namespace BountiesAndBlades.BaseHero {
         {
             return classDescription;
         }
-        public double getHP()
+        public int getHP()
         {
             return HP;
+        }
+
+        public int getMaxHP(){
+            return maxHP;
         }
         public double getArmor()
         {
@@ -75,6 +80,10 @@ namespace BountiesAndBlades.BaseHero {
         {
             HP = i;
         }
+
+        public void setMaxHP(int i){
+            maxHP = i;
+        }
         public void setArmor(int i)
         {
             Armor = i;
@@ -95,8 +104,22 @@ namespace BountiesAndBlades.BaseHero {
             StatsList[i] += ((s / 100) * StatsList[i]);
         }
 
-        public void getDamage() {
+        public abstract double getDamage();
 
+        public bool TakeDamage(int dmg){
+            if(dmg == 0){
+                return false;
+            }
+            if(dmg - (int)StatsList[2]/2.5 <= 0){
+                HP -= 1;
+            }
+            else{
+                HP -= (int)(dmg - StatsList[2]/2.5); //armor mitigated the damage
+            }
+            if (HP <= 0){
+                return true;
+            }
+            return false;
         }
 
         public void useItem(CharacterItems item) 

@@ -7,9 +7,8 @@ public class MilitaryRed2 : BaseHero
 {
     public MilitaryRed2()
     {
-        setName("Miltary Red 2");
+        setName("Corporal");
         setDescription("Rank 2 in the Red Military.");
-        setHP(10);
         setArmor(0);
         setStat(0, 7);
         setStat(1, 5);
@@ -17,8 +16,11 @@ public class MilitaryRed2 : BaseHero
         setStat(3, 7);
         setStat(4, 7);
         setStat(5, 7);
+        var hp = 10 + (int)getStat(4);
+        setHP(hp);
+        setMaxHP(hp);
     }
-    public new double getDamage()
+    public override double getDamage()
     {
 
         double randomNumber = Random.Range(1, 101);
