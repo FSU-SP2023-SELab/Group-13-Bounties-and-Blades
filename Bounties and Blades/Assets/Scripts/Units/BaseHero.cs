@@ -20,7 +20,7 @@ namespace BountiesAndBlades.BaseHero {
         public List<CharacterItems> inventory = new List<CharacterItems>();
         public CharacterItems EquippedWeapon = null;
         public CharacterItems EquippedArmor = null;
-        public CharacterStats[] CharacterStatList = new CharacterStats[6];
+        public Dictionary<int,CharacterStats> CharacterStatList = new Dictionary<int,CharacterStats>();
 
 
         private Dictionary<int, List<float>> modifiers = new Dictionary<int, List<float>>();
@@ -92,7 +92,13 @@ namespace BountiesAndBlades.BaseHero {
 
         public void setStat(int i, int v)
         {
-            CharacterStatList[i].BaseValue = v;
+            if (!CharacterStatList.ContainsKey(i))
+            {
+                CharacterStatList.Add(i, new CharacterStats(v));
+            }
+            else {
+                CharacterStatList[i].BaseValue = v;
+            }
             StatsList[i] = v;
         }
 
