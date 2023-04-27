@@ -92,6 +92,7 @@ namespace BountiesAndBlades.BaseHero {
 
         public void setStat(int i, int v)
         {
+            CharacterStatList[i].BaseValue = v;
             StatsList[i] = v;
         }
 
@@ -130,6 +131,11 @@ namespace BountiesAndBlades.BaseHero {
             // subclasses have it overwritten to handle
             // their respective cases
             item.Use(this);
+        }
+
+        public void Dump(CharacterItems item)
+        {
+            item.Dump(this);
         }
 
     }

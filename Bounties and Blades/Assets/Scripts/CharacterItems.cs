@@ -20,10 +20,10 @@ namespace BountiesAndBlades.CharacterItems
         public string itemDescription;
         public Sprite icon;
         public int maxStackSize;
-        public Dictionary<int, List<float>> modifiers; //items may carry multiple modifiers, represented as a percent +/-
+        public Dictionary<int, StatModifier> modifiers; //items may carry multiple modifiers, represented as a percent +/-
         public ItemType itemType;
 
-        public CharacterItems(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, List<float>> modifiers)
+        public CharacterItems(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, StatModifier> modifiers)
         {
             this.itemName = itemName;
             this.itemDescription = itemDescription;
@@ -32,7 +32,7 @@ namespace BountiesAndBlades.CharacterItems
             this.modifiers = modifiers;
         }
 
-        public CharacterItems (string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, List<float>> modifiers, ItemType itemType)
+        public CharacterItems (string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType)
         {
             this.itemName = itemName;
             this.itemDescription = itemDescription;
@@ -55,17 +55,40 @@ namespace BountiesAndBlades.CharacterItems
             }*/
         }
 
+        public virtual void Dump(BaseHero hero)
+        {
+            if (this.itemType != ItemType.Consumable) 
+            {
+                foreach (var modifier in modifiers)
+                {
+                    hero.CharacterStatList[modifier.Key].RemoveModifier(modifier.Value);
+                }
+                if (hero.EquippedArmor == this || hero.EquippedWeapon== this)
+                {
+                    if (this.itemType == ItemType.Weapon) { hero.EquippedWeapon = null; }
+                    else { hero.EquippedArmor = null; }
+                    return;
+                }
+            }
+            hero.inventory.Remove(this);
+        }
+
     }
 
     public class Consumable : CharacterItems
     {
 
-        public Consumable(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, List<float>> modifiers, ItemType itemType) : base(itemName, itemDescription, icon, maxStackSize, modifiers, itemType)
+        public Consumable(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, icon, maxStackSize, modifiers, itemType)
         {
         }
 
         public override void Use(BaseHero hero)
         {
+            foreach (var modifier in this.modifiers) 
+            {
+                hero.CharacterStatList[modifier.Key].AddModifier(modifier.Value);
+            }
+            hero.inventory.Remove(this);
 
         }
     }
@@ -73,7 +96,7 @@ namespace BountiesAndBlades.CharacterItems
     public class Weapon : CharacterItems
     {
         //increases strength stat during battle, potentially buff or nerf other stat
-        public Weapon(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, List<float>> modifiers, ItemType itemType) : base(itemName, itemDescription, icon, maxStackSize, modifiers, itemType)
+        public Weapon(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, icon, maxStackSize, modifiers, itemType)
         {
         }
 
@@ -87,6 +110,10 @@ namespace BountiesAndBlades.CharacterItems
             {
                 if (hero.inventory.Count < 5)
                 {
+                    foreach (KeyValuePair<int, StatModifier> k in hero.EquippedWeapon.modifiers)
+                    {
+                        hero.CharacterStatList[k.Key].RemoveModifier(k.Value); // might be fucked
+                    }
                     hero.inventory.Add(this);
                     hero.EquippedWeapon = null;
                 }
@@ -94,17 +121,18 @@ namespace BountiesAndBlades.CharacterItems
             }
             if (hero.EquippedWeapon is not null)
             {
+                foreach (KeyValuePair<int, StatModifier> k in hero.EquippedWeapon.modifiers)
+                {
+                    hero.CharacterStatList[k.Key].RemoveModifier(k.Value); // might be fucked
+                }
                 hero.inventory.Add(hero.EquippedWeapon);
                 hero.EquippedWeapon = null;
             }
             hero.EquippedWeapon = this;
             hero.inventory.Remove(this);
-            foreach (KeyValuePair<int, List<float>> k in modifiers)
+            foreach (KeyValuePair<int, StatModifier> k in modifiers)
             {
-                foreach (float f in k.Value)
-                {
-                    hero.addModifier(k.Key, f);
-                }
+                hero.CharacterStatList[k.Key].AddModifier(k.Value);
             }
         }
     }
@@ -112,7 +140,7 @@ namespace BountiesAndBlades.CharacterItems
     public class Armor : CharacterItems
     {
         //increases HP stat during battle, potentially buff or nerf other stat
-        public Armor(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, List<float>> modifiers, ItemType itemType) : base(itemName, itemDescription, icon, maxStackSize, modifiers, itemType)
+        public Armor(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, icon, maxStackSize, modifiers, itemType)
         {
         }
 
@@ -124,6 +152,10 @@ namespace BountiesAndBlades.CharacterItems
             {
                 if (hero.inventory.Count < 5)
                 {
+                    foreach (KeyValuePair<int, StatModifier> k in hero.EquippedArmor.modifiers)
+                    {
+                        hero.CharacterStatList[k.Key].RemoveModifier(k.Value); // might be fucked
+                    }
                     hero.inventory.Add(this);
                     hero.EquippedArmor = null;
                     
@@ -132,17 +164,18 @@ namespace BountiesAndBlades.CharacterItems
             }
             if (hero.EquippedArmor is not null)
             {
+                foreach (KeyValuePair<int, StatModifier> k in hero.EquippedArmor.modifiers)
+                {
+                    hero.CharacterStatList[k.Key].RemoveModifier(k.Value); // might be fucked
+                }
                 hero.inventory.Add(hero.EquippedArmor); 
                 hero.EquippedArmor = null;
             }
             hero.EquippedArmor = this;
             hero.inventory.Remove(this);
-            foreach (KeyValuePair<int, List<float>> k in modifiers)
+            foreach (KeyValuePair<int, StatModifier> k in modifiers)
             {
-                foreach (float f in k.Value)
-                {
-                    hero.addModifier(k.Key, f);
-                }
+                hero.CharacterStatList[k.Key].AddModifier((StatModifier)k.Value);
             }
         }
     }
