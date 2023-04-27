@@ -15,7 +15,7 @@ namespace BountiesAndBlades.CharacterItems
         Armor,
     }
 
-    public class CharacterItems
+    public class CharacterItems:MonoBehaviour
     {
         public string itemName;
         public string itemDescription;
@@ -23,6 +23,7 @@ namespace BountiesAndBlades.CharacterItems
         public int maxStackSize;
         public Dictionary<int, StatModifier> modifiers; //items may carry multiple modifiers, represented as a percent +/-
         public ItemType itemType;
+        public Tile OccupiedTile;
 
         public CharacterItems(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, StatModifier> modifiers)
         {

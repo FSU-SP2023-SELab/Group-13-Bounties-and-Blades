@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using BountiesAndBlades.BaseHero;
 using UnityEngine.SceneManagement;
+using BountiesAndBlades.CharacterItems;
 
 public class UnitManager : MonoBehaviour
 {
@@ -66,6 +67,27 @@ public class UnitManager : MonoBehaviour
             var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
             randomSpawnTile.SetUnit(myEnemy,enemyToSpawn);
+        }
+
+        GameManager.Instance.ChangeState(GameState.SpawnItems);
+    }
+
+    public void SpawnItems()
+    {
+        var itemCount = Random.Range(1, 3);
+
+        for (int i = 0; i < itemCount; i++)
+        {
+            List<GameObject> o = Resources.LoadAll<GameObject>("").ToList();
+            var ItemToSpawn = o[Random.Range(0, o.Count)];
+
+            CharacterItems myItem = ItemToSpawn.GetComponent<CharacterItems>();
+
+            var randomSpawnTile = GridManager.Instance.GetItemSpawnTile();
+
+            myItem.OccupiedTile = randomSpawnTile;
+
+            randomSpawnTile.SetItem(ItemToSpawn);
         }
 
         GameManager.Instance.ChangeState(GameState.HeroesTurn);

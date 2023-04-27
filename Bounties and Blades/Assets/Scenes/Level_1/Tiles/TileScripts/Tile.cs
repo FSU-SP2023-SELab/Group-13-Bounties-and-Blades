@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BountiesAndBlades.BaseHero;
-
+using BountiesAndBlades.CharacterItems;
 
 public abstract class Tile : MonoBehaviour
 {
@@ -92,10 +92,22 @@ public abstract class Tile : MonoBehaviour
         }
         else
         {
+            if (CloneOccupiedObject != null)
+            {
+                CharacterItems o = CloneOccupiedObject.GetComponent<CharacterItems>();
+                if (o != null)
+                {
+                    UnitManager.Instance.SelectedHero.addItem(o);
+                    Destroy(OccupiedObject);
+                    Destroy(CloneOccupiedObject);
+                }
+            }
+            
             if (UnitManager.Instance.SelectedHero != null && isWalkable())  // moving hero to selected tile
             {
                 SetUnit(UnitManager.Instance.SelectedHero, UnitManager.Instance.SelectedObject);
                 UnitManager.Instance.SetSelectedHero(null, null);
+                
             }
         }
 
@@ -117,6 +129,13 @@ public abstract class Tile : MonoBehaviour
         OccupiedObject = obj;
         CloneOccupiedObject = Instantiate(obj,new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
 
+    }
+
+    public void SetItem(GameObject obj)
+    {
+        OccupiedUnit = null;
+        OccupiedObject = obj;
+        CloneOccupiedObject = Instantiate(obj, new Vector3(transform.position.x, transform.position.y+1, transform.position.z - 1), Quaternion.identity);
     }
 
     

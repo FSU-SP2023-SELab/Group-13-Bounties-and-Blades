@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
             case GameState.SpawnEnemies:
                 UnitManager.Instance.SpawnEnemies();
                 break;
+            case GameState.SpawnItems:
+                UnitManager.Instance.SpawnItems();
+                break;
             case GameState.HeroesTurn:
                 break;
             case GameState.EnemiesTurn:
@@ -48,5 +51,6 @@ public enum GameState
     SpawnHeroes = 1,
     SpawnEnemies = 2,
     HeroesTurn = 3,
-    EnemiesTurn = 4
+    EnemiesTurn = 4,
+    SpawnItems = 5
 }
