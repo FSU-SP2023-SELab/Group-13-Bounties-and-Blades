@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1235957095966526223}
   - component: {fileID: 1235957095966526222}
   - component: {fileID: 1235957095966526221}
+  - component: {fileID: 6195272004124052767}
   m_Layer: 0
   m_Name: Chest1
   m_TagString: Chest
@@ -105,3 +106,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &6195272004124052767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235957095966526220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6644a044e9eef3c40be48adba666fba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Sword
+  itemDescription: Starter Sword
+  icon: {fileID: -469819033, guid: 09bc419587ccf9045b6bc1e763d2ed13, type: 3}
+  maxStackSize: 1
+  itemType: 1

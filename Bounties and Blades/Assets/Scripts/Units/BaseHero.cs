@@ -129,5 +129,10 @@ namespace BountiesAndBlades.BaseHero {
             // subclasses have it overwritten to handle
             // their respective cases
         }
+
+        public void addItem(CharacterItems i)
+        { 
+            inventory.Add(i);
+        }
     }
 }

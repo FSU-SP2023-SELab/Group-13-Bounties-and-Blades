@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -67,6 +68,12 @@ public class GridManager : MonoBehaviour
     {
         // makes enemies spawn to the right
         return _tiles.Where(t => t.Key.x > _width / 2 && t.Value.Walkable).OrderBy(t => Random.value).First().Value;
+    }
+
+    public Tile GetItemSpawnTile()
+    {
+       
+        return _tiles.Where(t => t.Value.OccupiedObject == null && t.Value.OccupiedUnit == null && t.Value.GetComponent<GrassTile>()).OrderBy(t => Random.value).First().Value;
     }
 
     public Tile GetTileAtPosition(Vector2 pos)
