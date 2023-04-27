@@ -144,5 +144,9 @@ namespace BountiesAndBlades.BaseHero {
             item.Dump(this);
         }
 
+        public void addItem(CharacterItems i)
+        {
+            inventory.Add(i);
+        }
     }
 }
