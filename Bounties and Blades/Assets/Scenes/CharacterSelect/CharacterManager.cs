@@ -17,6 +17,8 @@ public class CharacterManager : MonoBehaviour
 
     public static List<GameObject> team = new List<GameObject>();
 
+    
+
     public Button addButton;
     public Button removeButton;
     public Button playButton;

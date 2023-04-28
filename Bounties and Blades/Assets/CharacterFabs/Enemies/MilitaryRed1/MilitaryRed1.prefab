@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1004519058416318381, guid: b60c6ba8f1cb33c4f87c18e63865d51e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1004519058416318381, guid: b60c6ba8f1cb33c4f87c18e63865d51e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -97,3 +97,8 @@ MonoBehaviour:
   UnitName: Military Red 1
   OccupiedTile: {fileID: 0}
   Faction: 1
+  inventory: []
+  EquippedWeapon: {fileID: 0}
+  EquippedArmor: {fileID: 0}
+  Xpos: 11
+  Ypos: 2

@@ -47,6 +47,7 @@ public class BattleSystem : MonoBehaviour
 		// Instantiate() spawns our playerPrefab on top of the playerBattleStation location and we store a reference to the spawned thing to playerGO
 		playerGO = Instantiate(playerPrefab, new Vector3(playerBattleStation.transform.position.x,(float)(playerBattleStation.transform.position.y + .5),playerBattleStation.transform.position.z ), Quaternion.identity);	
 		playerGO.transform.localScale = new Vector3(3,3,3);
+		playerGO.layer = LayerMask.NameToLayer("UI");
 		heroScript = playerGO.GetComponent<BaseHero>(); // gets unit component of the gameObject of type Unit
 															// we will referencing the unit when we need information about its health, etc
 		playerHUD.SetHUD(heroScript);
@@ -54,6 +55,7 @@ public class BattleSystem : MonoBehaviour
 
 		enemyGO = Instantiate(enemyPrefab, new Vector3(enemyBattleStation.transform.position.x,enemyBattleStation.transform.position.y,enemyBattleStation.transform.position.z ), Quaternion.identity);
 		enemyGO.transform.localScale = new Vector3(2,2,2);
+		enemyGO.layer = LayerMask.NameToLayer("UI");
 		enemyScript = enemyGO.GetComponent<BaseHero>();
 		enemyHUD.SetHUD(enemyScript);
 
@@ -137,14 +139,26 @@ public class BattleSystem : MonoBehaviour
 	{
 		if(state == BattleState.WON)
 		{
+			UnitManager.Instance.battleWon = true;
 			dialogueText.text = "You won the battle! SUCK IT!";
+			
+			
+			UnitManager.Instance.battleFinished(true, playerGO, enemyGO);
 			Destroy(enemyGO);
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
-		} else if (state == BattleState.LOST)
-		{
-			dialogueText.text = "You were defeated. Dammit!";
+			MenuManager.Instance.activateUI();
+			SceneManager.UnloadSceneAsync("BattleScene");
 			Destroy(playerGO);
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+		} 
+		else if (state == BattleState.LOST)
+		{
+			UnitManager.Instance.battleWon = false;
+			dialogueText.text = "You were defeated. Dammit!";
+			
+			UnitManager.Instance.battleFinished(false, playerGO, enemyGO);
+			Destroy(playerGO);
+			MenuManager.Instance.activateUI();
+			SceneManager.UnloadSceneAsync("BattleScene");
+			Destroy(enemyGO);
 		}
 	}
 

@@ -17,6 +17,9 @@ public abstract class Tile : MonoBehaviour
 
     public GameObject CloneOccupiedObject;
 
+    public int _x;
+    public int _y;
+
     
 
     public bool Walkable => _isWalkable && OccupiedUnit == null;
@@ -84,9 +87,12 @@ public abstract class Tile : MonoBehaviour
                     
                     var attacking = UnitManager.Instance.SelectedObject;
                     var defending = OccupiedObject;
-                    
+                    MenuManager.Instance.deactivateUI();
                     
                     UnitManager.Instance.proceedToCombat(attacking,defending);
+                    if (UnitManager.Instance.battleWon == true){
+                        SetUnit(UnitManager.Instance.SelectedHero, UnitManager.Instance.SelectedObject);
+                    }
                 }
             }
         }
@@ -98,7 +104,7 @@ public abstract class Tile : MonoBehaviour
                 if (o != null)
                 {
                     UnitManager.Instance.SelectedHero.addItem(o);
-                    Destroy(OccupiedObject);
+                    //Destroy(OccupiedObject);
                     Destroy(CloneOccupiedObject);
                 }
             }
@@ -126,9 +132,12 @@ public abstract class Tile : MonoBehaviour
         OccupiedUnit = unit;
         unit.OccupiedTile = this;
 
+        BaseHero myHero = obj.GetComponent<BaseHero>();  
+        myHero.Xpos = (int)transform.position.x;
+        myHero.Ypos = (int)transform.position.y;
         OccupiedObject = obj;
         CloneOccupiedObject = Instantiate(obj,new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
-
+        UnitManager.clones.Add(CloneOccupiedObject);
     }
 
     public void SetItem(GameObject obj)

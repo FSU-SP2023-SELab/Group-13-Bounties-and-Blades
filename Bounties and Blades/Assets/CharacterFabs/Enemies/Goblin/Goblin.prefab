@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2279135578745259630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 3, z: -1}
+  m_LocalPosition: {x: 9, y: 1, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -121,3 +121,8 @@ MonoBehaviour:
   UnitName: Goblin
   OccupiedTile: {fileID: 0}
   Faction: 1
+  inventory: []
+  EquippedWeapon: {fileID: 0}
+  EquippedArmor: {fileID: 0}
+  Xpos: 9
+  Ypos: 1

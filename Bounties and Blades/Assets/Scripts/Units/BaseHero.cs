@@ -22,6 +22,9 @@ namespace BountiesAndBlades.BaseHero {
         public CharacterItems EquippedArmor = null;
         public Dictionary<int,CharacterStats> CharacterStatList = new Dictionary<int,CharacterStats>();
 
+        public int Xpos;
+        public int Ypos;
+
 
         private Dictionary<int, List<float>> modifiers = new Dictionary<int, List<float>>();
         public string getName()

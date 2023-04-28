@@ -21,10 +21,16 @@ public class UnitManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> enemies;
 
+    [SerializeField]
+    public static List<GameObject> clones = new List<GameObject>();
+
+    public static List<GameObject> spawnedEnemies = new List<GameObject>();
+
     public static GameObject attacking;
     public static GameObject defending;
 
-
+    public bool battleWon;
+    
     void Awake()
     {
         Instance = this;
@@ -34,23 +40,28 @@ public class UnitManager : MonoBehaviour
     }
 
 
+
     public void SpawnHeroes()
     {
-        var heroCount = team.Count;
+        if (GridManager.loaded == false){
+            Debug.Log("here");
 
-        for (int i = 0; i < heroCount; i++)
-        {
-            var heroToSpawn = team[i];
+            var heroCount = team.Count;
 
-            BaseHero myHero = heroToSpawn.GetComponent<BaseHero>();            
+            for (int i = 0; i < heroCount; i++)
+            {
+                var heroToSpawn = team[i];
 
-            var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
+                BaseHero myHero = heroToSpawn.GetComponent<BaseHero>();            
 
-            randomSpawnTile.SetUnit(myHero, heroToSpawn);
-            
+                var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
+
+                randomSpawnTile.SetUnit(myHero, heroToSpawn);
+                
+            }
+
+            GameManager.Instance.ChangeState(GameState.SpawnEnemies);
         }
-
-        GameManager.Instance.ChangeState(GameState.SpawnEnemies);
     }
 
     public void SpawnEnemies()
@@ -61,6 +72,7 @@ public class UnitManager : MonoBehaviour
         {
             var r = Random.Range(0,enemies.Count);
             var enemyToSpawn = enemies[r];
+            spawnedEnemies.Add(enemyToSpawn);
              
             BaseHero myEnemy = enemyToSpawn.GetComponent<BaseHero>(); 
 
@@ -108,6 +120,7 @@ public class UnitManager : MonoBehaviour
     }
 
     public void proceedToCombat(GameObject att, GameObject def){
+        battleWon = false;
         attacking = att;
         defending = def;
         if(attacking == null){
@@ -116,6 +129,48 @@ public class UnitManager : MonoBehaviour
         if(defending == null){
             Debug.Log("defending was null");
         }
-        SceneManager.LoadScene("BattleScene");
+        AudioListener audioListener = FindObjectOfType<AudioListener>();
+        audioListener.enabled = false;
+
+        SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
+    }
+
+    public void battleFinished(bool heroWon, GameObject hero, GameObject enemy){
+        
+        if(heroWon){ //deleting enemy
+            BaseHero enemyScript = enemy.GetComponent<BaseHero>();
+
+            for (int i = 0; i < clones.Count; i++){
+                GameObject g = clones[i];
+                Debug.Log(g.name);
+                BaseHero cloneScript = g.GetComponent<BaseHero>();
+                Debug.Log(cloneScript.getDescription());
+                
+                Debug.Log(cloneScript.getName());
+                Debug.Log(enemyScript.getName());
+                Debug.Log(" ");
+                if(cloneScript.getName() == enemyScript.getName()){
+                    Debug.Log(g.name);
+                    clones.Remove(g);
+                    Destroy(g);
+                    break;
+                }
+            }
+        }
+        else{ //hero lost so deleting hero 
+            BaseHero heroScript = hero.GetComponent<BaseHero>();
+            foreach (GameObject g in clones){
+                BaseHero cloneScript = g.GetComponent<BaseHero>();
+                if(cloneScript.getName() == heroScript.getName()){
+                    clones.Remove(g);
+                    Destroy(g);
+                    break;
+                }
+            }
+            
+        }
+        //have to turn the audioListener back on
+        AudioListener audioListener = FindObjectOfType<AudioListener>();
+        audioListener.enabled = true;
     }
 }
