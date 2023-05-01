@@ -16,7 +16,7 @@ public class UnitManager : MonoBehaviour
 
     public GameObject SelectedObject;
 
-    private List<GameObject> team = CharacterManager.team;
+    private List<GameObject> team = CharacterManager.Instance   .team;
 
     [SerializeField]
     private List<GameObject> enemies;
