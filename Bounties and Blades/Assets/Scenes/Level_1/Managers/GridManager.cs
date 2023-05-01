@@ -36,6 +36,7 @@ public class GridManager : MonoBehaviour
 
     public void GenerateGrid()
     {
+        Debug.Log("Entered GenerateGrid() function in GridManager");
         _tiles = new Dictionary<Vector2, Tile>();
         for (int x = 0; x < _width; x++)
         {
