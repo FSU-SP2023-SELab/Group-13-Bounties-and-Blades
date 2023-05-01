@@ -1,5 +1,7 @@
-using BountiesAndBlades.BaseHero;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using BountiesAndBlades.BaseHero;
 
 
 public abstract class Tile : MonoBehaviour
@@ -24,8 +26,8 @@ public abstract class Tile : MonoBehaviour
             return false;
         }
         var objToMove = UnitManager.Instance.SelectedObject;
-        var unitX = objToMove.transform.position.x;
-        var unitY = objToMove.transform.position.y;
+        var heroX = objToMove.transform.position.x;
+        var heroY = objToMove.transform.position.y;
         var tileX = transform.position.x;
         var tileY = transform.position.y;
         BaseHero myHeroScript = objToMove.GetComponent<BaseHero>();
@@ -39,7 +41,7 @@ public abstract class Tile : MonoBehaviour
         if(OccupiedUnit != null){
             //if()
         }
-        if(Mathf.Abs(tileX - unitX) <= speed && Mathf.Abs(tileY - unitY) <= speed){
+        if(Mathf.Abs(tileX - heroX) <= speed && Mathf.Abs(tileY - heroY) <= speed){
             return true;
         }
         return false;
@@ -52,7 +54,6 @@ public abstract class Tile : MonoBehaviour
     }
 
     void OnMouseEnter()
-    // runs when you hover over a tile
     {
         if(UnitManager.Instance.SelectedObject != null && _isWalkable && isWalkable()){
             _highlight.SetActive(true);
@@ -61,28 +62,24 @@ public abstract class Tile : MonoBehaviour
     }
 
     void OnMouseExit()
-        //runs when you stop hovering over a tile
     {
         _highlight.SetActive(false);
         MenuManager.Instance.ShowTileInfo(null);
     }
 
     void OnMouseDown()
-        // click logic for the game when it is players turn
     {
-        if (GameManager.Instance.GameState != GameState.HeroesTurn) return; // dont execute anything if it is not player turn
+        if (GameManager.Instance.GameState != GameState.HeroesTurn) return;
 
         if (OccupiedUnit != null) // if there is a unit to this tile
         {
-            if (OccupiedUnit.Faction == Faction.Hero) //check if the unit on clicked tile is a hero
+            if (OccupiedUnit.Faction == Faction.Hero) 
             {
-                // Select the hero on the tile so we can move with it  and attack enemies with said selected hero
                 UnitManager.Instance.SetSelectedHero((BaseHero)OccupiedUnit, (GameObject)OccupiedObject);
             }
             else
             {
-                if (UnitManager.Instance.SelectedHero != null) //if we have already clicked on a hero to select it then we enter this block 
-                    // in this scenario with an already selectedHero then we are clicking on an enemy
+                if (UnitManager.Instance.SelectedHero != null) // we are clicking on an ememy at this point to attack them
                 {
                     
                     var attacking = UnitManager.Instance.SelectedObject;
@@ -90,17 +87,15 @@ public abstract class Tile : MonoBehaviour
                     
                     
                     UnitManager.Instance.proceedToCombat(attacking,defending);
-                    GameManager.Instance.ChangeState(GameState.EnemiesTurn);    // after a fight you started, change to enemy turn
                 }
             }
         }
-        else //enter if no unit on clicked tile
+        else
         {
-            if (UnitManager.Instance.SelectedHero != null && isWalkable())  // moving selected hero to empty walkable tile
+            if (UnitManager.Instance.SelectedHero != null && isWalkable())  // moving hero to selected tile
             {
                 SetUnit(UnitManager.Instance.SelectedHero, UnitManager.Instance.SelectedObject);
                 UnitManager.Instance.SetSelectedHero(null, null);
-                GameManager.Instance.ChangeState(GameState.EnemiesTurn);    // after moving one hero to a block we switch to EnemyTurn
             }
         }
 
@@ -109,7 +104,6 @@ public abstract class Tile : MonoBehaviour
     public void SetUnit(BaseUnit unit, GameObject obj)
     {
         if (unit.OccupiedTile != null) //this is when you're moving away from a tile i think -- Marconi
-        // if you click on a tile that has a unit, it will destroy that object 
         {
             Destroy(unit.OccupiedTile.CloneOccupiedObject);
             //Destroy(CloneOccupiedObject);

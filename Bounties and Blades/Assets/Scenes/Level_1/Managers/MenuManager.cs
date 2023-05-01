@@ -8,9 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
 
-    [SerializeField] private GameObject _selectedHeroObject, _tileObject, _tileUnitObject, _unitInfo1, _unitInfo2, _unitInfo3, _unitInfo4, 
-                                        _unitInfo5, _unitInfo6 , _unitInfo7;
-
+    [SerializeField] private GameObject _selectedHeroObject, _tileObject, _tileUnitObject;
 
     void Awake()
     {
@@ -47,17 +45,5 @@ public class MenuManager : MonoBehaviour
 
         _selectedHeroObject.GetComponentInChildren<Text>().text = hero.UnitName;
         _selectedHeroObject.SetActive(true);
-    }
-
-    public void ShowUnitsSpeed(BaseHero heroes) // send in the list of the units on the screen and then have them set to _unitInfox depending on their speed stat
-    {
-        if (heroes == null)
-        {
-            _selectedHeroObject.SetActive(false);
-            return;
-        }
-
-        _unitInfo1.GetComponentInChildren<Text>().text = heroes.getStat(1).ToString();
-        _unitInfo1.SetActive(true);
     }
 }

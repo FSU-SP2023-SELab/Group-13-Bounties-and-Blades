@@ -137,14 +137,11 @@ public class BattleSystem : MonoBehaviour
 	{
 		if(state == BattleState.WON)
 		{
-			Debug.Log("Won Battle, going back to Level Scene");
 			dialogueText.text = "You won the battle! SUCK IT!";
-			UnitManager.enemyTeam.Remove(enemyGO); // removes the enemy about to be destroyed from the enemyTeam
 			Destroy(enemyGO);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
 		} else if (state == BattleState.LOST)
 		{
-			Debug.Log("Lost Battle, going back to Level Scene");
 			dialogueText.text = "You were defeated. Dammit!";
 			Destroy(playerGO);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
