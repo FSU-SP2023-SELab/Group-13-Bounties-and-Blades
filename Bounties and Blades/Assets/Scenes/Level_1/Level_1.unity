@@ -3217,33 +3217,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.28235295}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1798082290
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798082287}
-  m_CullTransparentMesh: 1
---- !u!1 &1893612524
+  SelectedHero: {fileID: 0}
+  SelectedObject: {fileID: 0}
+  enemies:
+  - {fileID: 3465005245278086693, guid: 34a8f3fac3cc58d4c8fb31b7b723c5c8, type: 3}
+  - {fileID: 6341573170509996634, guid: a43a128aeb29a56409dcdeba897719c3, type: 3}
+  - {fileID: 7228347872056117651, guid: c656017d577ce2349b6012c52dd74275, type: 3}
+  - {fileID: 2279135578745259630, guid: 5956ac3badba32246996487f790bb91c, type: 3}
+  - {fileID: 2279135578745259630, guid: 5956ac3badba32246996487f790bb91c, type: 3}
+  - {fileID: 1476094283390691024, guid: 4c286398b1cebb74499244458bfee77c, type: 3}
+  - {fileID: 5100619364356077600, guid: 65acd6ef899e111459358318a6e9daf7, type: 3}
+  - {fileID: 1009398788648934947, guid: a460899d22480004492ba98cb63f25ae, type: 3}
+  - {fileID: 4171654173298714927, guid: 1bcacc212b7ae8c43b90fb6b3530eb13, type: 3}
+  - {fileID: 903027748084567744, guid: f40aeb8c86c26fd46a07f013663a4ff2, type: 3}
+  - {fileID: 6025148482479568274, guid: 51a0eff4d5595f940b31777cef0a5ee4, type: 3}
+  - {fileID: 3906950313161037815, guid: 3591e613177cfc94fa960f1858fa3da6, type: 3}
+  - {fileID: 7983927011028430215, guid: ae527593ef344e749bb4f64bf3f17faf, type: 3}
+  - {fileID: 5598308430000962137, guid: ee24c6bd9eec7f24e86a83d222d84080, type: 3}
+  - {fileID: 8941019843866963478, guid: 737861091e964b64a843bd5fc9b59353, type: 3}
+  battleWon: 0
+--- !u!1 &852033875
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

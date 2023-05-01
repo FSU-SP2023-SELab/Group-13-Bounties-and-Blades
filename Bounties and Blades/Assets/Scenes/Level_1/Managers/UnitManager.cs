@@ -16,8 +16,7 @@ public class UnitManager : MonoBehaviour
     public GameObject SelectedObject;
     public GameObject SelectedEnemy;
 
-    private List<GameObject> team = CharacterManager.team;
-    public static List<GameObject> enemyTeam = new List<GameObject>(); // add spawned enemies to this enemyTeam
+    private List<GameObject> team = CharacterManager.Instance.team;
 
     [SerializeField]
     private List<GameObject> enemies;
@@ -170,6 +169,27 @@ public class UnitManager : MonoBehaviour
         if(defending == null){
             Debug.Log("defending was null");
         }
-        SceneManager.LoadScene("BattleScene");
+        AudioListener audioListener = FindObjectOfType<AudioListener>();
+        audioListener.enabled = false;
+
+        SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
+    }
+
+    public void battleFinished(bool heroWon, string diedName){
+        for (int i = 0; i < clones.Count; i++){
+            GameObject g = clones[i];
+            if(g == null){
+                continue;
+            }
+
+            if(g.name == diedName){
+                clones.Remove(g);
+                Destroy(g);
+                break;
+            }
+        }
+        //have to turn the audioListener back on
+        AudioListener audioListener = FindObjectOfType<AudioListener>();
+        audioListener.enabled = true;
     }
 }

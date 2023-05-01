@@ -118,6 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939b2a16297ed9f45bbee0fd3be68a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitName: Military Green 2
+  UnitName: Specialist
   OccupiedTile: {fileID: 0}
   Faction: 1
+  inventory: []
+  EquippedWeapon: {fileID: 0}
+  EquippedArmor: {fileID: 0}
+  Xpos: 0
+  Ypos: 0
