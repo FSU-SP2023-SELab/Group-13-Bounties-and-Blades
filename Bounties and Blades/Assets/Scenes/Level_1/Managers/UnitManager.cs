@@ -14,8 +14,10 @@ public class UnitManager : MonoBehaviour
     public BaseHero SelectedHero;
 
     public GameObject SelectedObject;
+    public GameObject SelectedEnemy;
 
     private List<GameObject> team = CharacterManager.team;
+    public static List<GameObject> enemyTeam = new List<GameObject>(); // add spawned enemies to this enemyTeam
 
     [SerializeField]
     private List<GameObject> enemies;
@@ -35,6 +37,7 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnHeroes()
     {
+        Debug.Log("Entering SpawnHeroes function in UnitManager");
         var heroCount = team.Count;
 
         for (int i = 0; i < heroCount; i++)
@@ -54,21 +57,94 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnEnemies()
     {
+        Debug.Log("Entering SpawnEnemies function in UnitManager");
         var enemyCount = Random.Range(1,5);
 
         for (int i = 0; i < enemyCount; i++)
         {
             var r = Random.Range(0,enemies.Count);
             var enemyToSpawn = enemies[r];
-             
-            BaseHero myEnemy = enemyToSpawn.GetComponent<BaseHero>(); 
+            enemyTeam.Add(enemies[r]); //add the spawned enemy to the enemy team list for EnemyTurn()
+
+            BaseHero myEnemy = enemyToSpawn.GetComponent<BaseHero>();
+
 
             var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
-            randomSpawnTile.SetUnit(myEnemy,enemyToSpawn);
+            randomSpawnTile.SetUnit(myEnemy, enemyToSpawn);
         }
 
         GameManager.Instance.ChangeState(GameState.HeroesTurn);
+    }
+
+    public void EnemyTurn()
+        // in the enemy turn, we want to selected an enemy that is not dead for the nearest hero unit to them, and move as close to them
+        // based on the selected enemies speed stat
+    {
+        Debug.Log("Entering EnemyTurn function");
+        //GameObject selectedEnemy; // this will be the enemy unit to move
+        var selectedEnemy = enemyTeam[0];
+        var selectedHero = team[0];
+        bool canFight = false;
+
+        for(int i = 0; i < enemyTeam.Count; i++)
+        {
+            selectedEnemy = enemyTeam[i];
+            for (int j = 0; j < team.Count; j++)
+            {
+                selectedHero = team[j];
+
+                var unitX = selectedEnemy.transform.position.x;
+                var unitY = selectedEnemy.transform.position.y;
+                var tileX = selectedHero.transform.position.x;
+                var tileY = selectedHero.transform.position.y;
+                BaseHero enemyScript = selectedEnemy.GetComponent<BaseHero>();
+                var enemySpeed = enemyScript.getStat(1);
+
+                if (Mathf.Abs(tileX - unitX) <= enemySpeed && Mathf.Abs(tileY - unitY) <= enemySpeed) // if hero is within their range
+                {
+                    canFight = true;
+                    break;
+                }
+
+            }
+            if (canFight)
+                break;
+        }
+
+        if(canFight)
+            UnitManager.Instance.proceedToCombat(selectedHero, selectedEnemy);
+
+        GameManager.Instance.ChangeState(GameState.HeroesTurn); // change to heroes turn at the end 
+
+        //for(int i = 0; i < enemyTeam.Count; i++)
+        // gets first enemy in enemy Team
+        //{
+        //    if(enemyTeam[i] != null) // null check for safety reasons
+        //    {
+        //        selectedEnemy = enemyTeam[i];
+        //       break;
+        //    }
+        //}
+
+        //var unitX = selectedEnemy.transform.position.x;
+        //var unitY = selectedEnemy.transform.position.y;
+        //var tileX = selectedHero.transform.position.x;
+        //var tileY = selectedHero.transform.position.y;
+        //BaseHero enemyScript = selectedEnemy.GetComponent<BaseHero>();
+        //var enemySpeed = enemyScript.getStat(1);
+
+
+        //if (Mathf.Abs(tileX - unitX) <= enemySpeed && Mathf.Abs(tileY - unitY) <= enemySpeed) // if hero is within their range
+        //{
+        //   UnitManager.Instance.proceedToCombat(selectedHero, selectedEnemy);
+        //}
+        //else // if hero is too far
+        //{
+        //
+        //}
+
+        //GameManager.Instance.ChangeState(GameState.HeroesTurn); // change to heroes turn at the end 
     }
 
     private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
