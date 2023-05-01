@@ -90,8 +90,10 @@ public class UnitManager : MonoBehaviour
 
         for (int i = 0; i < itemCount; i++)
         {
+            
             List<GameObject> o = Resources.LoadAll<GameObject>("").ToList();
-            var ItemToSpawn = o[Random.Range(0, o.Count)];
+            int index = Random.Range(0, o.Count);
+            var ItemToSpawn = o[index];
 
             CharacterItems myItem = ItemToSpawn.GetComponent<CharacterItems>();
 
@@ -99,7 +101,7 @@ public class UnitManager : MonoBehaviour
 
             myItem.OccupiedTile = randomSpawnTile;
 
-            randomSpawnTile.SetItem(ItemToSpawn);
+            randomSpawnTile.SetItem(ItemToSpawn, index);
         }
 
         GameManager.Instance.ChangeState(GameState.HeroesTurn);
