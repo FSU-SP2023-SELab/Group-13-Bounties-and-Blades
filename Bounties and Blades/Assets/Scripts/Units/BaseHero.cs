@@ -45,7 +45,7 @@ namespace BountiesAndBlades.BaseHero {
         }
         public double getStat(int i)
         {
-            return StatsList[i];
+            return CharacterStatList[i].TotalValue;
         }
         public double[] getAllStats()
         {
@@ -110,11 +110,11 @@ namespace BountiesAndBlades.BaseHero {
             if(dmg == 0){
                 return false;
             }
-            if(dmg - (int)StatsList[2]/2.5 <= 0){
+            if(dmg - (int)getStat(2)/2.5 <= 0){
                 HP -= 1;
             }
             else{
-                HP -= (int)(dmg - StatsList[2]/2.5); //armor mitigated the damage
+                HP -= (int)(dmg - getStat(2)/2.5); //armor mitigated the damage
             }
             if (HP <= 0){
                 return true;
