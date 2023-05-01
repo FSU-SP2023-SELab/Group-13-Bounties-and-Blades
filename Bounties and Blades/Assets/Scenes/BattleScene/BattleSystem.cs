@@ -142,8 +142,7 @@ public class BattleSystem : MonoBehaviour
 			UnitManager.Instance.battleWon = true;
 			dialogueText.text = "You won the battle! SUCK IT!";
 			
-			
-			UnitManager.Instance.battleFinished(true, playerGO, enemyGO);
+			UnitManager.Instance.battleFinished(true, enemyGO.name.ToString());
 			Destroy(enemyGO);
 			MenuManager.Instance.activateUI();
 			SceneManager.UnloadSceneAsync("BattleScene");
@@ -154,8 +153,8 @@ public class BattleSystem : MonoBehaviour
 			UnitManager.Instance.battleWon = false;
 			dialogueText.text = "You were defeated. Dammit!";
 			
-			UnitManager.Instance.battleFinished(false, playerGO, enemyGO);
-			Destroy(playerGO);
+			UnitManager.Instance.battleFinished(false, playerGO.name.ToString());
+			//Destroy(playerGO);
 			MenuManager.Instance.activateUI();
 			SceneManager.UnloadSceneAsync("BattleScene");
 			Destroy(enemyGO);

@@ -135,39 +135,26 @@ public class UnitManager : MonoBehaviour
         SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
     }
 
-    public void battleFinished(bool heroWon, GameObject hero, GameObject enemy){
-        
-        if(heroWon){ //deleting enemy
-            BaseHero enemyScript = enemy.GetComponent<BaseHero>();
-
-            for (int i = 0; i < clones.Count; i++){
-                GameObject g = clones[i];
-                Debug.Log(g.name);
-                BaseHero cloneScript = g.GetComponent<BaseHero>();
-                Debug.Log(cloneScript.getDescription());
-                
-                Debug.Log(cloneScript.getName());
-                Debug.Log(enemyScript.getName());
-                Debug.Log(" ");
-                if(cloneScript.getName() == enemyScript.getName()){
-                    Debug.Log(g.name);
-                    clones.Remove(g);
-                    Destroy(g);
-                    break;
-                }
-            }
-        }
-        else{ //hero lost so deleting hero 
-            BaseHero heroScript = hero.GetComponent<BaseHero>();
-            foreach (GameObject g in clones){
-                BaseHero cloneScript = g.GetComponent<BaseHero>();
-                if(cloneScript.getName() == heroScript.getName()){
-                    clones.Remove(g);
-                    Destroy(g);
-                    break;
-                }
+    public void battleFinished(bool heroWon, string diedName){
+        for (int i = 0; i < clones.Count; i++){
+            GameObject g = clones[i];
+            if(g == null){
+                continue;
             }
             
+            Debug.Log(g.name);
+            //BaseHero cloneScript = g.GetComponent<BaseHero>();
+            // Debug.Log(cloneScript.getDescription());
+            // Debug.Log(cloneScript.getName());
+            Debug.Log(diedName);
+            Debug.Log(" ");
+
+            if(g.name == diedName){
+                Debug.Log(g.name);
+                clones.Remove(g);
+                Destroy(g);
+                break;
+            }
         }
         //have to turn the audioListener back on
         AudioListener audioListener = FindObjectOfType<AudioListener>();
