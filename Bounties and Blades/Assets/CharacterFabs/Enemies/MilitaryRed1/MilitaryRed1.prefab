@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19688c76525f3cb4ab28806394736701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitName: Military Red 1
+  UnitName: Private First Class
   OccupiedTile: {fileID: 0}
   Faction: 1
   inventory: []

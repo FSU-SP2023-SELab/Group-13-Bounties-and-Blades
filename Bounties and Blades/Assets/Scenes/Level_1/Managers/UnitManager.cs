@@ -16,7 +16,7 @@ public class UnitManager : MonoBehaviour
 
     public GameObject SelectedObject;
 
-    private List<GameObject> team = CharacterManager.Instance   .team;
+    private List<GameObject> team = CharacterManager.Instance.team;
 
     [SerializeField]
     private List<GameObject> enemies;
@@ -38,6 +38,7 @@ public class UnitManager : MonoBehaviour
         _units = Resources.LoadAll<ScriptableUnit>("Units").ToList();
 
     }
+
 
 
 
@@ -143,16 +144,8 @@ public class UnitManager : MonoBehaviour
             if(g == null){
                 continue;
             }
-            
-            Debug.Log(g.name);
-            //BaseHero cloneScript = g.GetComponent<BaseHero>();
-            // Debug.Log(cloneScript.getDescription());
-            // Debug.Log(cloneScript.getName());
-            Debug.Log(diedName);
-            Debug.Log(" ");
 
             if(g.name == diedName){
-                Debug.Log(g.name);
                 clones.Remove(g);
                 Destroy(g);
                 break;
