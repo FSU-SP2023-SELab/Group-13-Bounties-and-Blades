@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character:
   - characterName: Archer
-    characterObject: {fileID: 1656163377383266125, guid: 5420a937ef596b944af3bb1fac21a940, type: 3}
+    characterObject: {fileID: 6640328428887571730, guid: 5420a937ef596b944af3bb1fac21a940, type: 3}
   - characterName: Barbarian
     characterObject: {fileID: 4663708362081260778, guid: 39782a3e708ac744ebc13ec0a06a3f29, type: 3}
   - characterName: Bard
@@ -46,6 +46,6 @@ MonoBehaviour:
   - characterName: Swordsman
     characterObject: {fileID: 495359657358798765, guid: 11d5b4dd6c1378341993c86d6a67eea3, type: 3}
   - characterName: Thief
-    characterObject: {fileID: 7962301387385200558, guid: ac51fbbf27f441647813779acf067e33, type: 3}
+    characterObject: {fileID: 3367890445171722808, guid: a595dfb75a8fb354c96e43ac936e081d, type: 3}
   - characterName: Warrior
-    characterObject: {fileID: 740546321963753683, guid: ed709eaae7a914f44861668d6afc09b0, type: 3}
+    characterObject: {fileID: 6885058984195234874, guid: ed709eaae7a914f44861668d6afc09b0, type: 3}

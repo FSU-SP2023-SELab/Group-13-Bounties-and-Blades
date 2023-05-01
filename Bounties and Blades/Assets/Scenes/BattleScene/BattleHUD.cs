@@ -21,13 +21,7 @@ public class BattleHUD : MonoBehaviour
 		nameText.text = unit.getName();
 		//levelText.text = "Lvl " + unit.unitLevel;
 		maxHP.text = unit.getMaxHP().ToString();
-		if (unit.getHP() <= 0)
-		{
-			currentHP.text = "0";
-		}
-		else{
-			currentHP.text = unit.getHP().ToString();
-		}
+		currentHP.text = unit.getHP().ToString();
 	}
 
 	public void SetHP(BaseHero unit)

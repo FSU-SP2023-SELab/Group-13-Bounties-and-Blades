@@ -8,28 +8,13 @@ public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
 
-    [SerializeField] private GameObject _selectedHeroObject, _tileObject, _tileUnitObject;
+    [SerializeField] private GameObject _selectedHeroObject, _tileObject, _tileUnitObject, _unitInfo1, _unitInfo2, _unitInfo3, _unitInfo4, 
+                                        _unitInfo5, _unitInfo6 , _unitInfo7;
 
-    [SerializeField] private GameObject _eventListener;
 
     void Awake()
     {
         Instance = this;
-    }
-
-    public void deactivateUI(){
-        AudioListener audioListener = FindObjectOfType<AudioListener>();
-        _selectedHeroObject.SetActive(false);
-        _tileObject.SetActive(false);
-        _tileUnitObject.SetActive(false);
-        _eventListener.SetActive(false);
-    }
-
-    public void activateUI(){
-        _selectedHeroObject.SetActive(true);
-        _tileObject.SetActive(true);
-        _tileUnitObject.SetActive(true);
-        _eventListener.SetActive(false);
     }
 
     public void ShowTileInfo(Tile tile)
@@ -62,5 +47,17 @@ public class MenuManager : MonoBehaviour
 
         _selectedHeroObject.GetComponentInChildren<Text>().text = hero.UnitName;
         _selectedHeroObject.SetActive(true);
+    }
+
+    public void ShowUnitsSpeed(BaseHero heroes) // send in the list of the units on the screen and then have them set to _unitInfox depending on their speed stat
+    {
+        if (heroes == null)
+        {
+            _selectedHeroObject.SetActive(false);
+            return;
+        }
+
+        _unitInfo1.GetComponentInChildren<Text>().text = heroes.getStat(1).ToString();
+        _unitInfo1.SetActive(true);
     }
 }
