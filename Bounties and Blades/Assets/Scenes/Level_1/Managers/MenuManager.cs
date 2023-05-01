@@ -12,26 +12,9 @@ public class MenuManager : MonoBehaviour
                                         _unitInfo5, _unitInfo6 , _unitInfo7;
 
 
-    [SerializeField] private GameObject _eventListener;
-
     void Awake()
     {
         Instance = this;
-    }
-
-    public void deactivateUI(){
-        AudioListener audioListener = FindObjectOfType<AudioListener>();
-        _selectedHeroObject.SetActive(false);
-        _tileObject.SetActive(false);
-        _tileUnitObject.SetActive(false);
-        _eventListener.SetActive(false);
-    }
-
-    public void activateUI(){
-        _selectedHeroObject.SetActive(true);
-        _tileObject.SetActive(true);
-        _tileUnitObject.SetActive(true);
-        _eventListener.SetActive(false);
     }
 
     public void ShowTileInfo(Tile tile)

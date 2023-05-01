@@ -11,7 +11,7 @@ public class JesterClass : BaseHero
         setDescription("The Jester is the life of the party! He is equipped with his juggling balls and an arsenal of jokes.");
         setArmor(0);
         setStat(0, 3);
-        setStat(1, 4);
+        setStat(1, 3);
         setStat(2, 3);
         setStat(3, 8);
         setStat(4, 5);

@@ -15,7 +15,7 @@ public class BarbarianClass : BaseHero
         setStat(2, 8);
         setStat(3, 4);
         setStat(4, 6);
-        setStat(5, 6);
+        setStat(5, 3);
         var hp = 10 + (int)getStat(4);
         setHP(hp);
         setMaxHP(hp);

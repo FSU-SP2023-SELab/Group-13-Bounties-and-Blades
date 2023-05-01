@@ -15,7 +15,7 @@ public class ArcherClass : BaseHero
         setStat(2, 3);
         setStat(3, 6);
         setStat(4, 6);
-        setStat(5, 7);
+        setStat(5, 5);
         var hp = 10 + (int)getStat(4);
         setHP(hp);
         setMaxHP(hp);
