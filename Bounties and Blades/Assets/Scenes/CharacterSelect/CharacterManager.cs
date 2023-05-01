@@ -8,6 +8,7 @@ using BountiesAndBlades.BaseHero;
 
 public class CharacterManager : MonoBehaviour
 {
+    public static CharacterManager Instance;
     public CharacterDatabase characterDB;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI NumInParty;
@@ -15,8 +16,12 @@ public class CharacterManager : MonoBehaviour
     public GameObject obj;
     private GameObject clone;
 
-    public static List<GameObject> team = new List<GameObject>();
+    public List<GameObject> team;
 
+    void Awake(){
+        Instance = this;
+        team = new List<GameObject>();
+    }
     
 
     public Button addButton;
@@ -96,6 +101,6 @@ public class CharacterManager : MonoBehaviour
         Character character = characterDB.GetCharacter(selected);
         nameText.text = character.characterName;
         obj = character.characterObject;
-        clone = Instantiate(obj, new Vector3(0, (float)-.4, 0), Quaternion.identity);
+        clone = Instantiate(obj, new Vector3(0, (float).1, 0), Quaternion.identity);
     }
 }
