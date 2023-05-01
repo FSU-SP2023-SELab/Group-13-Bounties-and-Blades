@@ -27,7 +27,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656163377383266125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 2, y: 2, z: -1}
+=======
+  m_LocalPosition: {x: 2, y: 4, z: -1}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -121,8 +125,14 @@ MonoBehaviour:
   UnitName: Archer
   OccupiedTile: {fileID: 0}
   Faction: 0
-  inventory: []
+  inventory:
+  - {fileID: 0}
+  - {fileID: 0}
   EquippedWeapon: {fileID: 0}
   EquippedArmor: {fileID: 0}
   Xpos: 2
+<<<<<<< Updated upstream
   Ypos: 2
+=======
+  Ypos: 4
+>>>>>>> Stashed changes
