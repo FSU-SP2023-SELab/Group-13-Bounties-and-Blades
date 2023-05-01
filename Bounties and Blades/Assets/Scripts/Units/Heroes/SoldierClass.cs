@@ -15,7 +15,7 @@ public class SoldierClass : BaseHero
         setStat(2, 9);
         setStat(3, 2);
         setStat(4, 7);
-        setStat(5, 4);
+        setStat(5, 5);
         var hp = 10 + (int)getStat(4);
         setHP(hp);
         setMaxHP(hp);

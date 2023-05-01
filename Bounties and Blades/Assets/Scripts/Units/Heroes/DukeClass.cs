@@ -15,7 +15,7 @@ public class DukeClass : BaseHero
         setStat(2, 5);
         setStat(3, 7);
         setStat(4, 8);
-        setStat(5, 4);
+        setStat(5, 6);
         var hp = 10 + (int)getStat(4);
         setHP(hp);
         setMaxHP(hp);

@@ -15,7 +15,7 @@ public class LancerClass : BaseHero
         setStat(2, 5);
         setStat(3, 5);
         setStat(4, 7);
-        setStat(5, 3);
+        setStat(5, 5);
         var hp = 10 + (int)getStat(4);
         setHP(hp);
         setMaxHP(hp);

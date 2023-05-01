@@ -14,7 +14,7 @@ public class BardClass : BaseHero
         setStat(2, 4);
         setStat(3, 7);
         setStat(4, 7);
-        setStat(5, 6);
+        setStat(5, 8);
         var hp = 10 + (int)getStat(4);
         setHP(hp);
         setMaxHP(hp);
