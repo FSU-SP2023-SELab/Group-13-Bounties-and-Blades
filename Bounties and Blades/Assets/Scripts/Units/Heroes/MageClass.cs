@@ -15,7 +15,7 @@ public class MageClass : BaseHero
         setStat(2, 6);
         setStat(3, 8);
         setStat(4, 6);
-        setStat(5, 4);
+        setStat(5, 5);
         var hp = 10 + (int)getStat(4);
         setHP(hp);
         setMaxHP(hp);

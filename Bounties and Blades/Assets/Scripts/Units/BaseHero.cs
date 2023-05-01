@@ -17,9 +17,13 @@ namespace BountiesAndBlades.BaseHero {
         private int maxHP;
         private double Armor;
         private double[] StatsList = new double[6]; //0 Strength, 1 Speed, 2 Defense, 3 Intelligence, 4 Constitution, 5 Luck
-        public static List<CharacterItems> inventory = new List<CharacterItems>();
-        public static CharacterItems EquippedWeapon = null;
-        public static CharacterItems EquippedArmor = null;
+        public List<CharacterItems> inventory = new List<CharacterItems>();
+        public CharacterItems EquippedWeapon = null;
+        public CharacterItems EquippedArmor = null;
+        public Dictionary<int,CharacterStats> CharacterStatList = new Dictionary<int,CharacterStats>();
+
+        public int Xpos;
+        public int Ypos;
 
 
         private Dictionary<int, List<float>> modifiers = new Dictionary<int, List<float>>();
@@ -91,6 +95,13 @@ namespace BountiesAndBlades.BaseHero {
 
         public void setStat(int i, int v)
         {
+            if (!CharacterStatList.ContainsKey(i))
+            {
+                CharacterStatList.Add(i, new CharacterStats(v));
+            }
+            else {
+                CharacterStatList[i].BaseValue = v;
+            }
             StatsList[i] = v;
         }
 
@@ -128,6 +139,17 @@ namespace BountiesAndBlades.BaseHero {
             // call the use function on item, all the
             // subclasses have it overwritten to handle
             // their respective cases
+            item.Use(this);
+        }
+
+        public void Dump(CharacterItems item)
+        {
+            item.Dump(this);
+        }
+
+        public void addItem(CharacterItems i)
+        {
+            inventory.Add(i);
         }
     }
 }

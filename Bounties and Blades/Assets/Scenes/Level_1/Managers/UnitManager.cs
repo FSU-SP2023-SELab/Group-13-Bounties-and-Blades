@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using BountiesAndBlades.BaseHero;
 using UnityEngine.SceneManagement;
+using BountiesAndBlades.CharacterItems;
 
 public class UnitManager : MonoBehaviour
 {
@@ -14,18 +15,22 @@ public class UnitManager : MonoBehaviour
     public BaseHero SelectedHero;
 
     public GameObject SelectedObject;
-    public GameObject SelectedEnemy;
 
-    private List<GameObject> team = CharacterManager.team;
-    public static List<GameObject> enemyTeam = new List<GameObject>(); // add spawned enemies to this enemyTeam
+    private List<GameObject> team = CharacterManager.Instance   .team;
 
     [SerializeField]
     private List<GameObject> enemies;
 
+    [SerializeField]
+    public static List<GameObject> clones = new List<GameObject>();
+
+    public static List<GameObject> spawnedEnemies = new List<GameObject>();
+
     public static GameObject attacking;
     public static GameObject defending;
 
-
+    public bool battleWon;
+    
     void Awake()
     {
         Instance = this;
@@ -35,116 +40,71 @@ public class UnitManager : MonoBehaviour
     }
 
 
+
     public void SpawnHeroes()
     {
-        Debug.Log("Entering SpawnHeroes function in UnitManager");
-        var heroCount = team.Count;
+        if (GridManager.loaded == false){
+            Debug.Log("here");
 
-        for (int i = 0; i < heroCount; i++)
-        {
-            var heroToSpawn = team[i];
+            var heroCount = team.Count;
 
-            BaseHero myHero = heroToSpawn.GetComponent<BaseHero>();            
+            for (int i = 0; i < heroCount; i++)
+            {
+                var heroToSpawn = team[i];
 
-            var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
+                BaseHero myHero = heroToSpawn.GetComponent<BaseHero>();            
 
-            randomSpawnTile.SetUnit(myHero, heroToSpawn);
-            
+                var randomSpawnTile = GridManager.Instance.GetHeroSpawnTile();
+
+                randomSpawnTile.SetUnit(myHero, heroToSpawn);
+                
+            }
+
+            GameManager.Instance.ChangeState(GameState.SpawnEnemies);
         }
-
-        GameManager.Instance.ChangeState(GameState.SpawnEnemies);
     }
 
     public void SpawnEnemies()
     {
-        Debug.Log("Entering SpawnEnemies function in UnitManager");
         var enemyCount = Random.Range(1,5);
 
         for (int i = 0; i < enemyCount; i++)
         {
             var r = Random.Range(0,enemies.Count);
             var enemyToSpawn = enemies[r];
-            enemyTeam.Add(enemies[r]); //add the spawned enemy to the enemy team list for EnemyTurn()
-
-            BaseHero myEnemy = enemyToSpawn.GetComponent<BaseHero>();
-
+            spawnedEnemies.Add(enemyToSpawn);
+             
+            BaseHero myEnemy = enemyToSpawn.GetComponent<BaseHero>(); 
 
             var randomSpawnTile = GridManager.Instance.GetEnemySpawnTile();
 
-            randomSpawnTile.SetUnit(myEnemy, enemyToSpawn);
+            randomSpawnTile.SetUnit(myEnemy,enemyToSpawn);
+        }
+
+        GameManager.Instance.ChangeState(GameState.SpawnItems);
+    }
+
+    public void SpawnItems()
+    {
+        var itemCount = Random.Range(1, 3);
+
+        for (int i = 0; i < itemCount; i++)
+        {
+            
+            List<GameObject> o = Resources.LoadAll<GameObject>("").ToList();
+            int index = Random.Range(0, o.Count);
+            var ItemToSpawn = o[index];
+
+            CharacterItems myItem = ItemToSpawn.GetComponent<CharacterItems>();
+
+            var randomSpawnTile = GridManager.Instance.GetItemSpawnTile();
+
+            myItem.OccupiedTile = randomSpawnTile;
+
+            randomSpawnTile.SetItem(ItemToSpawn, index);
         }
 
         GameManager.Instance.ChangeState(GameState.HeroesTurn);
-    }
-
-    public void EnemyTurn()
-        // in the enemy turn, we want to selected an enemy that is not dead for the nearest hero unit to them, and move as close to them
-        // based on the selected enemies speed stat
-    {
-        Debug.Log("Entering EnemyTurn function");
-        //GameObject selectedEnemy; // this will be the enemy unit to move
-        var selectedEnemy = enemyTeam[0];
-        var selectedHero = team[0];
-        bool canFight = false;
-
-        for(int i = 0; i < enemyTeam.Count; i++)
-        {
-            selectedEnemy = enemyTeam[i];
-            for (int j = 0; j < team.Count; j++)
-            {
-                selectedHero = team[j];
-
-                var unitX = selectedEnemy.transform.position.x;
-                var unitY = selectedEnemy.transform.position.y;
-                var tileX = selectedHero.transform.position.x;
-                var tileY = selectedHero.transform.position.y;
-                BaseHero enemyScript = selectedEnemy.GetComponent<BaseHero>();
-                var enemySpeed = enemyScript.getStat(1);
-
-                if (Mathf.Abs(tileX - unitX) <= enemySpeed && Mathf.Abs(tileY - unitY) <= enemySpeed) // if hero is within their range
-                {
-                    canFight = true;
-                    break;
-                }
-
-            }
-            if (canFight)
-                break;
-        }
-
-        if(canFight)
-            UnitManager.Instance.proceedToCombat(selectedHero, selectedEnemy);
-
-        GameManager.Instance.ChangeState(GameState.HeroesTurn); // change to heroes turn at the end 
-
-        //for(int i = 0; i < enemyTeam.Count; i++)
-        // gets first enemy in enemy Team
-        //{
-        //    if(enemyTeam[i] != null) // null check for safety reasons
-        //    {
-        //        selectedEnemy = enemyTeam[i];
-        //       break;
-        //    }
-        //}
-
-        //var unitX = selectedEnemy.transform.position.x;
-        //var unitY = selectedEnemy.transform.position.y;
-        //var tileX = selectedHero.transform.position.x;
-        //var tileY = selectedHero.transform.position.y;
-        //BaseHero enemyScript = selectedEnemy.GetComponent<BaseHero>();
-        //var enemySpeed = enemyScript.getStat(1);
-
-
-        //if (Mathf.Abs(tileX - unitX) <= enemySpeed && Mathf.Abs(tileY - unitY) <= enemySpeed) // if hero is within their range
-        //{
-        //   UnitManager.Instance.proceedToCombat(selectedHero, selectedEnemy);
-        //}
-        //else // if hero is too far
-        //{
-        //
-        //}
-
-        //GameManager.Instance.ChangeState(GameState.HeroesTurn); // change to heroes turn at the end 
     }
 
     private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
@@ -162,6 +122,7 @@ public class UnitManager : MonoBehaviour
     }
 
     public void proceedToCombat(GameObject att, GameObject def){
+        battleWon = false;
         attacking = att;
         defending = def;
         if(attacking == null){
@@ -170,6 +131,35 @@ public class UnitManager : MonoBehaviour
         if(defending == null){
             Debug.Log("defending was null");
         }
-        SceneManager.LoadScene("BattleScene");
+        AudioListener audioListener = FindObjectOfType<AudioListener>();
+        audioListener.enabled = false;
+
+        SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
+    }
+
+    public void battleFinished(bool heroWon, string diedName){
+        for (int i = 0; i < clones.Count; i++){
+            GameObject g = clones[i];
+            if(g == null){
+                continue;
+            }
+            
+            Debug.Log(g.name);
+            //BaseHero cloneScript = g.GetComponent<BaseHero>();
+            // Debug.Log(cloneScript.getDescription());
+            // Debug.Log(cloneScript.getName());
+            Debug.Log(diedName);
+            Debug.Log(" ");
+
+            if(g.name == diedName){
+                Debug.Log(g.name);
+                clones.Remove(g);
+                Destroy(g);
+                break;
+            }
+        }
+        //have to turn the audioListener back on
+        AudioListener audioListener = FindObjectOfType<AudioListener>();
+        audioListener.enabled = true;
     }
 }

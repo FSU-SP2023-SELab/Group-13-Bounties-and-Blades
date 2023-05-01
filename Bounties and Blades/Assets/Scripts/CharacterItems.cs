@@ -5,6 +5,8 @@ namespace BountiesAndBlades.CharacterItems
     using UnityEngine;
     using BountiesAndBlades.BaseHero;
     using System.Data;
+    using BountiesAndBlades.CharacterStats;
+    using Unity.IO.LowLevel.Unsafe;
 
     public enum ItemType
     {
@@ -13,35 +15,33 @@ namespace BountiesAndBlades.CharacterItems
         Armor,
     }
 
-    public class CharacterItems
+    public class CharacterItems:MonoBehaviour
     {
         public string itemName;
         public string itemDescription;
-        public Sprite icon;
         public int maxStackSize;
-        public Dictionary<int, List<float>> modifiers; //items may carry multiple modifiers, represented as a percent +/-
+        public Dictionary<int, StatModifier> modifiers; //items may carry multiple modifiers, represented as a percent +/-
         public ItemType itemType;
+        public Tile OccupiedTile;
 
-        public CharacterItems(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, List<float>> modifiers)
+        public CharacterItems(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers)
         {
             this.itemName = itemName;
             this.itemDescription = itemDescription;
-            this.icon = icon;
             this.maxStackSize = maxStackSize;
             this.modifiers = modifiers;
         }
 
-        public CharacterItems (string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, List<float>> modifiers, ItemType itemType)
+        public CharacterItems (string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType)
         {
             this.itemName = itemName;
             this.itemDescription = itemDescription;
-            this.icon = icon;
             this.maxStackSize = maxStackSize;
             this.modifiers = modifiers;
             this.itemType = itemType;
         }
 
-        public virtual void Use(BaseHero hero, CharacterItems item)
+        public virtual void Use(BaseHero hero)
         {
             // Is going to get overwritten
             /*
@@ -54,68 +54,156 @@ namespace BountiesAndBlades.CharacterItems
             }*/
         }
 
+        public virtual void Dump(BaseHero hero)
+        {
+            if (this.modifiers == null)
+            {
+                hero.inventory.Remove(this);
+                return;
+            }
+            if (this.itemType != ItemType.Consumable) 
+            {
+                foreach (var modifier in modifiers)
+                {
+                    hero.CharacterStatList[modifier.Key].RemoveModifier(modifier.Value);
+                }
+                if (hero.EquippedArmor == this || hero.EquippedWeapon == this)
+                {
+                    if (this.itemType == ItemType.Weapon) { hero.EquippedWeapon = null; }
+                    else { hero.EquippedArmor = null; }
+                    return;
+                }
+            }
+            hero.inventory.Remove(this);
+        }
+
+        protected virtual void Unequip(BaseHero hero, CharacterItems item)
+        {
+            // overwritten by Weapon and Armor classes, not used in consumable
+        }
+
+        protected virtual void Equip(BaseHero hero, CharacterItems item) { } //ditto for Unequip
+
     }
 
     public class Consumable : CharacterItems
     {
 
-        public Consumable(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, List<float>> modifiers, ItemType itemType) : base(itemName, itemDescription, icon, maxStackSize, modifiers, itemType)
+        public Consumable(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, maxStackSize, modifiers, itemType)
         {
         }
 
-        public override void Use(BaseHero hero, CharacterItems item)
+        public override void Use(BaseHero hero)
         {
-            foreach (KeyValuePair<int, List<float>> k in modifiers)
+            if (this.modifiers != null)
             {
-                foreach (float f in k.Value)
+                foreach (var modifier in this.modifiers)
                 {
-                    hero.addModifier(k.Key, f);
+                    hero.CharacterStatList[modifier.Key].AddModifier(modifier.Value);
                 }
             }
+            hero.inventory.Remove(this);
+
         }
     }
 
     public class Weapon : CharacterItems
     {
         //increases strength stat during battle, potentially buff or nerf other stat
-        public Weapon(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, List<float>> modifiers, ItemType itemType) : base(itemName, itemDescription, icon, maxStackSize, modifiers, itemType)
+        public Weapon(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, maxStackSize, modifiers, itemType)
         {
         }
 
-        public override void Use(BaseHero hero, CharacterItems item)
+        public override void Use(BaseHero hero)
         {
-            // need to add an if statement that checks whether the hero
-            // already has a weapon equipped, and if they do it need to add
-            // it to the hero's inventory before replacing it with the armor
-            // they want to equip
-            foreach (KeyValuePair<int, List<float>> k in modifiers)
+            if (hero.EquippedWeapon is not null) // take off modifiers from currently equipped weapon
             {
-                foreach (float f in k.Value)
+                if (this == hero.EquippedWeapon && hero.inventory.Count < 5)
                 {
-                    hero.addModifier(k.Key, f);
+                    Unequip(hero, this);
+                    return;
+                }
+                else if (this == hero.EquippedWeapon) return; 
+                Unequip(hero, hero.EquippedWeapon);
+            }
+            Equip(hero, this);
+
+        }
+
+        protected override void Unequip (BaseHero hero, CharacterItems item)
+        {
+            if (hero.EquippedWeapon.modifiers is not null)
+            {
+                foreach (KeyValuePair<int, StatModifier> k in hero.EquippedWeapon.modifiers)
+                {
+                    hero.CharacterStatList[k.Key].RemoveModifier(k.Value); // might be fucked
                 }
             }
+            hero.inventory.Add(item);
+            hero.EquippedWeapon = null;
+        }
+
+        protected override void Equip(BaseHero hero, CharacterItems item)
+        {
+            if (item.modifiers is not null)
+            {
+                foreach (var modifier in item.modifiers)
+                {
+                    hero.CharacterStatList[modifier.Key].AddModifier(modifier.Value);
+                }
+            }
+            hero.EquippedWeapon = item;
+            hero.inventory.Remove(item);
         }
     }
 
     public class Armor : CharacterItems
     {
         //increases HP stat during battle, potentially buff or nerf other stat
-        public Armor(string itemName, string itemDescription, Sprite icon, int maxStackSize, Dictionary<int, List<float>> modifiers, ItemType itemType) : base(itemName, itemDescription, icon, maxStackSize, modifiers, itemType)
+        public Armor(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, maxStackSize, modifiers, itemType)
         {
         }
 
-        public override void Use(BaseHero hero, CharacterItems item)
+        public override void Use(BaseHero hero)
         {
-            // Need the same if statement as weapon, except it needs to check
-            // for armor
-            foreach (KeyValuePair<int, List<float>> k in modifiers)
+            if (hero.EquippedArmor is not null) // take off modifiers from currently equipped Armor
             {
-                foreach (float f in k.Value)
+                if (this == hero.EquippedArmor && hero.inventory.Count < 5)
                 {
-                    hero.addModifier(k.Key, f);
+                    Unequip(hero, this);
+                    return;
+                }
+                else if (this == hero.EquippedArmor) return;
+                Unequip(hero, hero.EquippedArmor);
+            }
+            Equip(hero, this);
+
+        }
+
+        protected override void Unequip(BaseHero hero, CharacterItems item)
+        {
+            if (hero.EquippedArmor.modifiers is not null)
+            {
+                foreach (KeyValuePair<int, StatModifier> k in hero.EquippedArmor.modifiers)
+                {
+                    hero.CharacterStatList[k.Key].RemoveModifier(k.Value); // might be fucked
                 }
             }
+            hero.inventory.Add(item);
+            hero.EquippedArmor = null;
+        }
+
+        protected override void Equip(BaseHero hero, CharacterItems item)
+        {
+            if (item.modifiers is not null)
+            {
+                foreach (var modifier in item.modifiers)
+                {
+                    hero.CharacterStatList[modifier.Key].AddModifier(modifier.Value);
+                }
+            }
+            hero.EquippedArmor = item;
+            hero.inventory.Remove(item);
         }
     }
 }
