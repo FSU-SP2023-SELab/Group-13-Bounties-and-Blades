@@ -73,7 +73,7 @@ public abstract class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (GameManager.Instance.GameState != GameState.HeroesTurn) return;
+        if (GameManager.Instance.GameState != GameState.HeroesTurn) return; // dont execute anything if it is not player turn
 
         if (OccupiedUnit != null) // if there is a unit to this tile
         {
@@ -94,6 +94,7 @@ public abstract class Tile : MonoBehaviour
                     if (UnitManager.Instance.battleWon == true){
                         SetUnit(UnitManager.Instance.SelectedHero, UnitManager.Instance.SelectedObject);
                     }
+                   // GameManager.Instance.ChangeState(GameState.EnemiesTurn);
                 }
             }
         }
@@ -130,10 +131,9 @@ public abstract class Tile : MonoBehaviour
             {
                 SetUnit(UnitManager.Instance.SelectedHero, UnitManager.Instance.SelectedObject);
                 UnitManager.Instance.SetSelectedHero(null, null);
-                
+               // GameManager.Instance.ChangeState(GameState.EnemiesTurn);
             }
         }
-
     }
 
     public void SetUnit(BaseUnit unit, GameObject obj)
