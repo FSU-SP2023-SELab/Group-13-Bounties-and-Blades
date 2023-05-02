@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState GameState;
+    public GameOverScreen GameOverScreen;
+    public GameVictoryScreen GameVictoryScreen;
 
     void Awake()
     {
@@ -38,6 +40,13 @@ public class GameManager : MonoBehaviour
             case GameState.HeroesTurn:
                 break;
             case GameState.EnemiesTurn:
+                UnitManager.Instance.EnemyTurn();
+                break;
+            case GameState.GameWon:
+                GameVictoryScreen.Setup();
+                break;
+            case GameState.GameLost:
+                GameOverScreen.Setup();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -52,5 +61,7 @@ public enum GameState
     SpawnEnemies = 2,
     HeroesTurn = 3,
     EnemiesTurn = 4,
-    SpawnItems = 5
+    SpawnItems = 5,
+    GameWon = 6,
+    GameLost = 7
 }
