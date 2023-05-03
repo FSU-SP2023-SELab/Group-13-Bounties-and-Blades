@@ -15,7 +15,7 @@ public class MilitaryGreen4 : BaseHero
         setStat(2, 9);
         setStat(3, 9);
         setStat(4, 9);
-        setStat(5, 9);
+        setStat(5, 5);
         var hp = 10 + (int)getStat(4);
         setHP(hp);
         setMaxHP(hp);

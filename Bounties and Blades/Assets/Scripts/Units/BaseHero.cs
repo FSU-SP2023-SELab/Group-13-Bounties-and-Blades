@@ -13,7 +13,7 @@ namespace BountiesAndBlades.BaseHero {
         private static string className;
         private static string classDescription;
 
-        private int HP;
+        public int HP;
         private int maxHP;
         private double Armor;
         private double[] StatsList = new double[6]; //0 Strength, 1 Speed, 2 Defense, 3 Intelligence, 4 Constitution, 5 Luck

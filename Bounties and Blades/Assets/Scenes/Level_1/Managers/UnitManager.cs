@@ -24,6 +24,7 @@ public class UnitManager : MonoBehaviour
 
     public static List<GameObject> spawnedEnemies = new List<GameObject>(); // add spawned enemies to this enemyTeam
 
+    public static bool herosWon = false;
     public static GameObject attacking;
     public static GameObject defending;
 
@@ -37,11 +38,35 @@ public class UnitManager : MonoBehaviour
 
     }
 
+    void Update(){
+        int herosAlive = 0;
+        int enemiesAlive = 0;
+        for(int i = 0; i < clones.Count; i++){
+            if (clones[i] == null){
+                continue;
+            }
+            BaseHero cloneScript = clones[i].GetComponent<BaseHero>();
+            if (cloneScript.Faction == Faction.Hero){
+                herosAlive++;
+            }
+            if(cloneScript.Faction == Faction.Enemy){
+                enemiesAlive++;
+            }
+        }
+        if (herosAlive == 0){
+            herosWon = false;
+            SceneManager.LoadScene("GameOver");
+        }
+        if(enemiesAlive == 0){
+            herosWon = true;
+            SceneManager.LoadScene("GameOver");
+        }
+    }
+
 
     public void SpawnHeroes()
     {
         if (GridManager.loaded == false){
-            Debug.Log("here");
 
             var heroCount = team.Count;
 
@@ -69,7 +94,7 @@ public class UnitManager : MonoBehaviour
         {
             var r = Random.Range(0,enemies.Count);
             var enemyToSpawn = enemies[r];
-            spawnedEnemies.Add(enemyToSpawn);
+            spawnedEnemies.Add(enemyToSpawn); // prefab is added
              
             BaseHero myEnemy = enemyToSpawn.GetComponent<BaseHero>(); 
 
@@ -229,7 +254,8 @@ public class UnitManager : MonoBehaviour
         SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
     }
 
-    public void battleFinished(bool heroWon, string diedName){
+    public void battleFinished(bool heroWon, string aliveName, string diedName, int health){
+        //removing the dead person from map
         for (int i = 0; i < clones.Count; i++){
             GameObject g = clones[i];
             if(g == null){
@@ -242,8 +268,40 @@ public class UnitManager : MonoBehaviour
                 break;
             }
         }
+        //setting the alive person's health 
+        for (int i = 0; i < clones.Count; i++){
+            GameObject g = clones[i];
+            if(g == null){
+                continue;
+            }
+
+            if(g.name == aliveName){
+                BaseHero heroScript = g.GetComponent<BaseHero>(); 
+                heroScript.setHP(health);
+                break;
+            }
+        }
         //have to turn the audioListener back on
         AudioListener audioListener = FindObjectOfType<AudioListener>();
         audioListener.enabled = true;
+
+        //make the selected person/hero null
+        SelectedHero = null;
+        SelectedObject = null;
+    }
+
+    public int getHPByName(string name){
+        for (int i = 0; i < clones.Count; i++){
+            GameObject g = clones[i];
+            if(g == null){
+                continue;
+            }
+
+            if(g.name == name){
+                BaseHero script = g.GetComponent<BaseHero>(); 
+                return script.getHP();
+            }
+        }
+        return 0;
     }
 }

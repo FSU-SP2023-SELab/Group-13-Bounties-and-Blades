@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1004519058416318381, guid: b60c6ba8f1cb33c4f87c18e63865d51e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1004519058416318381, guid: b60c6ba8f1cb33c4f87c18e63865d51e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1004519058416318381, guid: b60c6ba8f1cb33c4f87c18e63865d51e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -97,8 +97,9 @@ MonoBehaviour:
   UnitName: Private First Class
   OccupiedTile: {fileID: 0}
   Faction: 1
+  HP: 16
   inventory: []
   EquippedWeapon: {fileID: 0}
   EquippedArmor: {fileID: 0}
-  Xpos: 11
-  Ypos: 2
+  Xpos: 14
+  Ypos: 0

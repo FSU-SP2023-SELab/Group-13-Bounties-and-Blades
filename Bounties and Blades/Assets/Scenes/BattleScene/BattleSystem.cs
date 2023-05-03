@@ -50,6 +50,7 @@ public class BattleSystem : MonoBehaviour
 		playerGO.layer = LayerMask.NameToLayer("UI");
 		heroScript = playerGO.GetComponent<BaseHero>(); // gets unit component of the gameObject of type Unit
 															// we will referencing the unit when we need information about its health, etc
+		heroScript.setHP(UnitManager.Instance.getHPByName(playerGO.name.ToString()));
 		playerHUD.SetHUD(heroScript);
 
 
@@ -57,6 +58,7 @@ public class BattleSystem : MonoBehaviour
 		enemyGO.transform.localScale = new Vector3(2,2,2);
 		enemyGO.layer = LayerMask.NameToLayer("UI");
 		enemyScript = enemyGO.GetComponent<BaseHero>();
+		enemyScript.setHP(UnitManager.Instance.getHPByName(enemyGO.name.ToString()));
 		enemyHUD.SetHUD(enemyScript);
 
 		dialogueText.text = "The " + enemyScript.getName() + " stands before you";
@@ -142,7 +144,9 @@ public class BattleSystem : MonoBehaviour
 			UnitManager.Instance.battleWon = true;
 			dialogueText.text = "You won the battle! SUCK IT!";
 			
-			UnitManager.Instance.battleFinished(true, enemyGO.name.ToString());
+			BaseHero heroScript = playerGO.GetComponent<BaseHero>(); 
+			var health =  heroScript.getHP();
+			UnitManager.Instance.battleFinished(true, playerGO.name.ToString() ,enemyGO.name.ToString(), health);
 			Destroy(enemyGO);
 			MenuManager.Instance.activateUI();
 			SceneManager.UnloadSceneAsync("BattleScene");
@@ -153,8 +157,10 @@ public class BattleSystem : MonoBehaviour
 			UnitManager.Instance.battleWon = false;
 			dialogueText.text = "You were defeated. Dammit!";
 			
-			UnitManager.Instance.battleFinished(false, playerGO.name.ToString());
-			//Destroy(playerGO);
+			BaseHero enemyScript = enemyGO.GetComponent<BaseHero>(); 
+			var health =  enemyScript.getHP();
+			UnitManager.Instance.battleFinished(false, enemyGO.name.ToString() ,playerGO.name.ToString(), health);
+			Destroy(playerGO);
 			MenuManager.Instance.activateUI();
 			SceneManager.UnloadSceneAsync("BattleScene");
 			Destroy(enemyGO);

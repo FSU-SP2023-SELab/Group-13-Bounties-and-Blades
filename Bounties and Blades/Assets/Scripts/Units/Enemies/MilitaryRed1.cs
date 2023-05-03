@@ -15,7 +15,7 @@ public class MilitaryRed1 : BaseHero
         setStat(2, 6);
         setStat(3, 6);
         setStat(4, 6);
-        setStat(5, 6);
+        setStat(5, 2);
         var hp = 10 + (int)getStat(4);
         setHP(hp);
         setMaxHP(hp);

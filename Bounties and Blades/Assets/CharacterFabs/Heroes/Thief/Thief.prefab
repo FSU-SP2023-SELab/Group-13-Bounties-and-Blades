@@ -121,7 +121,10 @@ MonoBehaviour:
   UnitName: Thief
   OccupiedTile: {fileID: 0}
   Faction: 0
+  HP: 16
   inventory:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   EquippedWeapon: {fileID: 0}

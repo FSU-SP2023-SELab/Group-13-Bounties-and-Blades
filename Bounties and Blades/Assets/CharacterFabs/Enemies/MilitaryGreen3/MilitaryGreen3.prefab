@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4171654173298714927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 1, z: -1}
+  m_LocalPosition: {x: 10, y: 8, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -121,8 +121,9 @@ MonoBehaviour:
   UnitName: Sergeant
   OccupiedTile: {fileID: 0}
   Faction: 1
+  HP: 18
   inventory: []
   EquippedWeapon: {fileID: 0}
   EquippedArmor: {fileID: 0}
-  Xpos: 15
-  Ypos: 1
+  Xpos: 10
+  Ypos: 8

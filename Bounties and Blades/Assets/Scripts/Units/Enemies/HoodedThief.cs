@@ -15,7 +15,7 @@ public class HoodedThief : BaseHero
         setStat(2, 4);
         setStat(3, 5);
         setStat(4, 5);
-        setStat(5, 7);
+        setStat(5, 4);
         var hp = 10 + (int)getStat(4);
         setHP(hp);
         setMaxHP(hp);
