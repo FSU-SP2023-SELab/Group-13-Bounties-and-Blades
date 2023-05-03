@@ -1,11 +1,9 @@
-using System.Collections;
+using BountiesAndBlades.BaseHero;
+using BountiesAndBlades.CharacterItems;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
-using BountiesAndBlades.BaseHero;
 using UnityEngine.SceneManagement;
-using BountiesAndBlades.CharacterItems;
 
 public class UnitManager : MonoBehaviour
 {
@@ -24,7 +22,7 @@ public class UnitManager : MonoBehaviour
     [SerializeField]
     public static List<GameObject> clones = new List<GameObject>();
 
-    public static List<GameObject> spawnedEnemies = new List<GameObject>();
+    public static List<GameObject> spawnedEnemies = new List<GameObject>(); // add spawned enemies to this enemyTeam
 
     public static GameObject attacking;
     public static GameObject defending;
@@ -38,8 +36,6 @@ public class UnitManager : MonoBehaviour
         _units = Resources.LoadAll<ScriptableUnit>("Units").ToList();
 
     }
-
-
 
 
     public void SpawnHeroes()
@@ -106,6 +102,101 @@ public class UnitManager : MonoBehaviour
         }
 
         GameManager.Instance.ChangeState(GameState.HeroesTurn);
+    }
+
+    public void EnemyTurn()
+    // in the enemy turn, we want to selected an enemy that is not dead for the nearest hero unit to them, and move as close to them
+    // based on the selected enemies speed stat
+    {
+        Debug.Log("Entering EnemyTurn function");
+        //GameObject selectedEnemy; // this will be the enemy unit to move
+
+        bool canFight = false;
+
+        /*
+        for(int i = 0; i< clones.Count; i++)
+        {
+            if (clones[i] == null)
+                continue;
+            BaseHero cloneScript = clones[i].GetComponent<BaseHero>();
+            if(cloneScript.Faction == Faction.Enemy)
+                enemyClones.Add(clones[i]);
+            if (cloneScript.Faction == Faction.Hero)
+                heroClones.Add(clones[i]);
+
+        }*/
+
+
+        var selectedEnemy = clones[0];
+        var selectedHero = clones[0];
+
+        for (int i = 0; i < clones.Count; i++)
+        {
+
+            if (clones[i] == null)
+                continue;
+            BaseHero cloneScript = clones[i].GetComponent<BaseHero>();
+            if (cloneScript.Faction == Faction.Enemy)
+                selectedEnemy = clones[i];
+            if (cloneScript.Faction == Faction.Hero)
+                selectedHero = clones[i];
+            
+            /*
+            for (int j = 0; j < heroClones.Count; j++)
+            {
+                selectedHero = heroClones[j];
+
+                var unitX = selectedEnemy.transform.position.x;
+                var unitY = selectedEnemy.transform.position.y;
+                var tileX = selectedHero.transform.position.x;
+                var tileY = selectedHero.transform.position.y;
+                BaseHero enemyScript = selectedEnemy.GetComponent<BaseHero>();
+                var enemySpeed = enemyScript.getStat(1);
+
+                if (Mathf.Abs(tileX - unitX) <= enemySpeed && Mathf.Abs(tileY - unitY) <= enemySpeed) // if hero is within their range
+                {
+                    canFight = true;
+                    break;
+                }
+
+            }*/
+            if (canFight)
+                break;
+        }
+
+        if (canFight)
+            UnitManager.Instance.proceedToCombat(selectedHero, selectedEnemy);
+
+        GameManager.Instance.ChangeState(GameState.HeroesTurn); // change to heroes turn at the end 
+
+        //for(int i = 0; i < enemyTeam.Count; i++)
+        // gets first enemy in enemy Team
+        //{
+        //    if(enemyTeam[i] != null) // null check for safety reasons
+        //    {
+        //        selectedEnemy = enemyTeam[i];
+        //       break;
+        //    }
+        //}
+
+        //var unitX = selectedEnemy.transform.position.x;
+        //var unitY = selectedEnemy.transform.position.y;
+        //var tileX = selectedHero.transform.position.x;
+        //var tileY = selectedHero.transform.position.y;
+        //BaseHero enemyScript = selectedEnemy.GetComponent<BaseHero>();
+        //var enemySpeed = enemyScript.getStat(1);
+
+
+        //if (Mathf.Abs(tileX - unitX) <= enemySpeed && Mathf.Abs(tileY - unitY) <= enemySpeed) // if hero is within their range
+        //{
+        //   UnitManager.Instance.proceedToCombat(selectedHero, selectedEnemy);
+        //}
+        //else // if hero is too far
+        //{
+        //
+        //}
+
+        //GameManager.Instance.ChangeState(GameState.HeroesTurn); // change to heroes turn at the end 
     }
 
     private T GetRandomUnit<T>(Faction faction) where T : BaseUnit
