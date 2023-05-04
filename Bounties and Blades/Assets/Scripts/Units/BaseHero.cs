@@ -151,5 +151,21 @@ namespace BountiesAndBlades.BaseHero {
         {
             inventory.Add(i);
         }
+
+        public List<CharacterItems> getInventory()
+        {
+            return inventory;
+        }
+
+        public CharacterItems getEquippedWeapon()
+        {
+            return EquippedWeapon;
+        }
+
+        public CharacterItems getEquippedArmor()
+        {
+            return EquippedArmor;
+        }
+
     }
 }

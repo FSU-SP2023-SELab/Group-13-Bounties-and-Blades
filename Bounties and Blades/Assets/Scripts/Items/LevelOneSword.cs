@@ -7,7 +7,7 @@ using BountiesAndBlades.CharacterStats;
 
 public class LevelOneSword : Weapon
 {
-    public LevelOneSword(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, maxStackSize, modifiers, itemType)
+    public LevelOneSword(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType,Sprite sprite) : base(itemName, itemDescription, maxStackSize, modifiers, itemType, sprite)
     {
         itemName = "Level 1 Sword";
         itemDescription = "This sword has been through the wringer, but we'll just say has been tried and tested, and don't ask why it keeps getting passed around";
