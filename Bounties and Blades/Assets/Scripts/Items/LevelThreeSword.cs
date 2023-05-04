@@ -7,7 +7,7 @@ using BountiesAndBlades.CharacterStats;
 
 public class LevelThreeSword : Weapon
 {
-    public LevelThreeSword(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType, Sprite sprite) : base(itemName, itemDescription, maxStackSize, modifiers, itemType, sprite)
+    public LevelThreeSword(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, maxStackSize, modifiers, itemType)
     {
         itemName = "Level 3 Sword";
         itemDescription = "Ender Dragon? Night King? Greek Gods? The Covenant? This sword will make short work of 'em all!";

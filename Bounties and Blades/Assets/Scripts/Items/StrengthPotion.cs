@@ -7,7 +7,7 @@ using BountiesAndBlades.CharacterStats;
 
 public class StrengthPotion : Consumable
 {
-    public StrengthPotion(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType, Sprite sprite) : base(itemName, itemDescription, maxStackSize, modifiers, itemType, sprite) 
+    public StrengthPotion(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, maxStackSize, modifiers, itemType) 
     {
         itemName = "Strength Potion";
         itemDescription = "Skip the gym one too many times and it's starting to show? Drink this! (Bounites&Blades LLC is not liable for any subsequent failed drug tests)";

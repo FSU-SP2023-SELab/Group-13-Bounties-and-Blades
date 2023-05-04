@@ -23,7 +23,6 @@ namespace BountiesAndBlades.CharacterItems
         public Dictionary<int, StatModifier> modifiers; //items may carry multiple modifiers, represented as a percent +/-
         public ItemType itemType;
         public Tile OccupiedTile;
-        public Sprite sprite;
 
         public CharacterItems(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers)
         {
@@ -33,14 +32,13 @@ namespace BountiesAndBlades.CharacterItems
             this.modifiers = modifiers;
         }
 
-        public CharacterItems (string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType, Sprite sprite)
+        public CharacterItems (string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType)
         {
             this.itemName = itemName;
             this.itemDescription = itemDescription;
             this.maxStackSize = maxStackSize;
             this.modifiers = modifiers;
             this.itemType = itemType;
-            this.sprite = sprite;
         }
 
         public virtual void Use(BaseHero hero)
@@ -91,7 +89,7 @@ namespace BountiesAndBlades.CharacterItems
     public class Consumable : CharacterItems
     {
 
-        public Consumable(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType,Sprite sprite) : base(itemName, itemDescription, maxStackSize, modifiers, itemType, sprite)
+        public Consumable(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, maxStackSize, modifiers, itemType)
         {
         }
 
@@ -112,7 +110,7 @@ namespace BountiesAndBlades.CharacterItems
     public class Weapon : CharacterItems
     {
         //increases strength stat during battle, potentially buff or nerf other stat
-        public Weapon(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType, Sprite sprite) : base(itemName, itemDescription, maxStackSize, modifiers, itemType, sprite)
+        public Weapon(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, maxStackSize, modifiers, itemType)
         {
         }
 
@@ -162,7 +160,7 @@ namespace BountiesAndBlades.CharacterItems
     public class Armor : CharacterItems
     {
         //increases HP stat during battle, potentially buff or nerf other stat
-        public Armor(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType, Sprite sprite) : base(itemName, itemDescription, maxStackSize, modifiers, itemType, sprite)
+        public Armor(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, maxStackSize, modifiers, itemType)
         {
         }
 

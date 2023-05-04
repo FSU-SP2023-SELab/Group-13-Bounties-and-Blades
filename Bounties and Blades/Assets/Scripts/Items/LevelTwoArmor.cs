@@ -7,7 +7,7 @@ using BountiesAndBlades.CharacterStats;
 
 public class LevelTwoArmor : Armor
 {
-    public LevelTwoArmor(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType, Sprite sprite) : base(itemName, itemDescription, maxStackSize, modifiers, itemType, sprite)
+    public LevelTwoArmor(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base(itemName, itemDescription, maxStackSize, modifiers, itemType)
     {
         itemName = "Level 2 Armor";
         itemDescription = "Lookig for some better bling? This might as well be Versace";
