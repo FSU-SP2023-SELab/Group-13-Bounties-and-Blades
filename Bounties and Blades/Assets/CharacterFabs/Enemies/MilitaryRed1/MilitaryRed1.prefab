@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1004519058416318381, guid: b60c6ba8f1cb33c4f87c18e63865d51e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1004519058416318381, guid: b60c6ba8f1cb33c4f87c18e63865d51e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -102,4 +102,4 @@ MonoBehaviour:
   EquippedWeapon: {fileID: 0}
   EquippedArmor: {fileID: 0}
   Xpos: 14
-  Ypos: 0
+  Ypos: 3

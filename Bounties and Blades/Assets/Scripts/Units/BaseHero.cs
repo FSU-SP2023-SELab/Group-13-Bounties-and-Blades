@@ -4,6 +4,8 @@ namespace BountiesAndBlades.BaseHero {
     using UnityEngine;
     using BountiesAndBlades.CharacterItems;
     using BountiesAndBlades.CharacterStats;
+    using System.Linq;
+
     // using BountiesAndBlades.InventorySystem;
 
 
@@ -17,7 +19,7 @@ namespace BountiesAndBlades.BaseHero {
         private int maxHP;
         private double Armor;
         private double[] StatsList = new double[6]; //0 Strength, 1 Speed, 2 Defense, 3 Intelligence, 4 Constitution, 5 Luck
-        public List<CharacterItems> inventory = new List<CharacterItems>();
+        public CharacterItems[] inventory = new CharacterItems[5];
         public CharacterItems EquippedWeapon = null;
         public CharacterItems EquippedArmor = null;
         public Dictionary<int,CharacterStats> CharacterStatList = new Dictionary<int,CharacterStats>();
@@ -149,12 +151,12 @@ namespace BountiesAndBlades.BaseHero {
 
         public void addItem(CharacterItems i)
         {
-            inventory.Add(i);
+            inventory.ToList().Add(i);
         }
 
         public List<CharacterItems> getInventory()
         {
-            return inventory;
+            return inventory.ToList();
         }
 
         public CharacterItems getEquippedWeapon()

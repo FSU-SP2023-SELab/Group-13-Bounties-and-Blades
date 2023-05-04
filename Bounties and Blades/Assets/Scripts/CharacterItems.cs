@@ -7,6 +7,7 @@ namespace BountiesAndBlades.CharacterItems
     using System.Data;
     using BountiesAndBlades.CharacterStats;
     using Unity.IO.LowLevel.Unsafe;
+    using System.Linq;
 
     public enum ItemType
     {
@@ -60,7 +61,7 @@ namespace BountiesAndBlades.CharacterItems
         {
             if (this.modifiers == null)
             {
-                hero.inventory.Remove(this);
+                hero.inventory.ToList().Remove(this);
                 return;
             }
             if (this.itemType != ItemType.Consumable) 
@@ -76,7 +77,7 @@ namespace BountiesAndBlades.CharacterItems
                     return;
                 }
             }
-            hero.inventory.Remove(this);
+            hero.inventory.ToList().Add(this);
         }
 
         protected virtual void Unequip(BaseHero hero, CharacterItems item)
@@ -104,7 +105,7 @@ namespace BountiesAndBlades.CharacterItems
                     hero.CharacterStatList[modifier.Key].AddModifier(modifier.Value);
                 }
             }
-            hero.inventory.Remove(this);
+            hero.inventory.ToList().Remove(this);
 
         }
     }
@@ -120,7 +121,7 @@ namespace BountiesAndBlades.CharacterItems
         {
             if (hero.EquippedWeapon is not null) // take off modifiers from currently equipped weapon
             {
-                if (this == hero.EquippedWeapon && hero.inventory.Count < 5)
+                if (this == hero.EquippedWeapon && hero.inventory.ToList().Count < 5)
                 {
                     Unequip(hero, this);
                     return;
@@ -141,7 +142,7 @@ namespace BountiesAndBlades.CharacterItems
                     hero.CharacterStatList[k.Key].RemoveModifier(k.Value); // might be fucked
                 }
             }
-            hero.inventory.Add(item);
+            hero.inventory.ToList().Add(item);
             hero.EquippedWeapon = null;
         }
 
@@ -155,7 +156,7 @@ namespace BountiesAndBlades.CharacterItems
                 }
             }
             hero.EquippedWeapon = item;
-            hero.inventory.Remove(item);
+            hero.inventory.ToList().Remove(item);
         }
     }
 
@@ -170,7 +171,7 @@ namespace BountiesAndBlades.CharacterItems
         {
             if (hero.EquippedArmor is not null) // take off modifiers from currently equipped Armor
             {
-                if (this == hero.EquippedArmor && hero.inventory.Count < 5)
+                if (this == hero.EquippedArmor && hero.inventory.ToList().Count < 5)
                 {
                     Unequip(hero, this);
                     return;
@@ -191,7 +192,7 @@ namespace BountiesAndBlades.CharacterItems
                     hero.CharacterStatList[k.Key].RemoveModifier(k.Value); // might be fucked
                 }
             }
-            hero.inventory.Add(item);
+            hero.inventory.ToList().Add(item);
             hero.EquippedArmor = null;
         }
 
@@ -205,7 +206,7 @@ namespace BountiesAndBlades.CharacterItems
                 }
             }
             hero.EquippedArmor = item;
-            hero.inventory.Remove(item);
+            hero.inventory.ToList().Remove(item);
         }
     }
 }
