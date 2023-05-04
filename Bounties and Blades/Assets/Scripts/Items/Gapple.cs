@@ -8,7 +8,7 @@ using BountiesAndBlades.CharacterStats;
 public class Gapple : Consumable
 {
 
-    public Gapple(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base (itemName, itemDescription, maxStackSize, modifiers, itemType)
+    public Gapple(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType, Sprite sprite) : base(itemName, itemDescription, maxStackSize, modifiers, itemType, sprite)
     {
         itemName = "Golden Apple";
         itemDescription = "Dire situation? All hope lost? Use this mystical apple to snatch victory from the jaws of defeat!";

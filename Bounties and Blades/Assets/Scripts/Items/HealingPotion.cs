@@ -7,7 +7,7 @@ using BountiesAndBlades.CharacterStats;
 
 public class HealingPotion : Consumable
 {
-    public HealingPotion(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType) : base (itemName, itemDescription, maxStackSize, modifiers, itemType) 
+    public HealingPotion(string itemName, string itemDescription, int maxStackSize, Dictionary<int, StatModifier> modifiers, ItemType itemType, Sprite sprite) : base(itemName, itemDescription, maxStackSize, modifiers, itemType, sprite) 
     {
         itemName = "Defense Potion";
         itemDescription = "Taking some heavy hits? Drink this potion to bolster your defenses!";
